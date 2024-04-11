@@ -1,5 +1,3 @@
-#푸시 드뎌 성공했다 ㅠㅠㅠㅠㅠ
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
