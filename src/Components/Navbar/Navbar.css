@@ -1,0 +1,61 @@
+.navbar{
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+  box-shadow: 0 1px 3px -2px black;
+}
+.nav-logo{
+  display: flex;
+  width: 60px;
+  height: 60px;
+  gap: 10px;
+}
+.nav-logo p{
+  display: flex;
+  width: 60px;
+  height: 60px;
+}
+.nav-menu{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 500;
+  margin-left: 20px;
+  justify-content: flex-start;
+}
+.nav-menu li{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  position: relative; 
+}
+.nav-menu li:hover {
+  color: #F3A6B3; /* 마우스 호버시 색상 변경 */
+}
+.nav-menu hr{
+  border: none;
+  width: 80%;
+  height: 3px;
+  border-radius: 10px;
+  background: #FBCDD4;
+  position: absolute;
+  bottom: -13px;
+}
+.nav-login{
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}
+.nav-login button{
+  width: 70px;
+  height: 30px;
+  outline: none;
+  border: 1px;
+  border-radius: 75px;
+  color: #ffffff;
+  background-color: #FBCDD4;
+  cursor: pointer;
+}
