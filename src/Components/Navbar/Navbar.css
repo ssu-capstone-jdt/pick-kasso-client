@@ -59,3 +59,12 @@
   background-color: #FBCDD4;
   cursor: pointer;
 }
+.nav-menu a {
+  text-decoration: none;
+  color: black; /* 기본 색상 */
+  font-weight: bold; /* 볼드체 */
+}
+
+.nav-menu a:hover {
+  color: #F3A6B3; /* 호버 시 색상 변경 */
+}
