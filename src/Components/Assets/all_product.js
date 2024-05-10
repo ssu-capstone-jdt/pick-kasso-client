@@ -1,94 +1,104 @@
-import c1_img from "./curriculums_1.jpg";
-import c2_img from "./curriculums_2.jpg";
-import c3_img from "./curriculums_3.jpg";
-import c4_img from "./curriculums_4.jpg";
-import c5_img from "./curriculums_5.jpg";
-import c6_img from "./curriculums_6.jpg";
-import c7_img from "./curriculums_7.jpg";
-import c8_img from "./curriculums_8.jpg";
-import c9_img from "./curriculums_9.jpg";
-import c10_img from "./curriculums_10.jpg";
+import p1_img from "./curriculums_1.jpg";
+import p2_img from "./curriculums_2.jpg";
+import p3_img from "./curriculums_3.jpg";
+import p4_img from "./curriculums_4.jpg";
+import p5_img from "./curriculums_5.jpg";
+import p6_img from "./curriculums_6.jpg";
+import p7_img from "./curriculums_7.jpg";
+import p8_img from "./curriculums_8.jpg";
+import p9_img from "./curriculums_9.jpg";
+import p10_img from "./curriculums_10.jpg";
 
 
 let all_product = [
   {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c1_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  },
-  {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c2_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  },
-  {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c3_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  },
-  {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c4_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  },
-  {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c5_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  },
-  {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c6_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  },
-  {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c7_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  },
-  {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c8_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  },
-  {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c9_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  },
-  {
-		curriculum_title : 'title',
-		curriculum_info : 'curriculum_info',
-		curriculum_background : c10_img,
-		curriculum_round_count : 9,
-		curriculum_difficulty : 'difficulty',
-		curriculum_state : 'state'
-  }
+		id: 1,
+		name: "title",
+		caregory: "초/중/고",
+		image: p1_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	},
+	{
+		id: 2,
+		name: "title",
+		caregory: "초/중/고",
+		image: p2_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	},
+	{
+		id: 3,
+		name: "title",
+		caregory: "초/중/고",
+		image: p3_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	},
+	{
+		id: 4,
+		name: "title",
+		caregory: "초/중/고",
+		image: p4_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	},
+	{
+		id: 5,
+		name: "title",
+		caregory: "초/중/고",
+		image: p5_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	},
+	{
+		id: 6,
+		name: "title",
+		caregory: "초/중/고",
+		image: p6_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	},
+	{
+		id: 7,
+		name: "title",
+		caregory: "초/중/고",
+		image: p7_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	},
+	{
+		id: 8,
+		name: "title",
+		caregory: "초/중/고",
+		image: p8_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	},
+	{
+		id: 9,
+		name: "title",
+		caregory: "초/중/고",
+		image: p9_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	},
+	{
+		id: 10,
+		name: "title",
+		caregory: "초/중/고",
+		image: p10_img,
+		new_price: "round",
+		old_price: "회차",
+		cur_info: "long information",
+	}
 ]

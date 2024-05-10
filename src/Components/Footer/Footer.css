@@ -1,0 +1,32 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 30px 50px;
+    background-color: #343A40; 
+    color: white;
+    font-size: 14px;
+}
+.footer-center {
+    display: flex;
+    justify-content: center; 
+    flex-direction: row;
+    flex-grow: 1; 
+    gap: 20px;
+} 
+.footer-info {
+    text-align: center;
+}
+.info-top{
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+.footer-right {
+    display: flex;
+    gap: 15px; 
+}
+.social-icon {
+    width: 30px;
+    height: 30px;
+}
+  
