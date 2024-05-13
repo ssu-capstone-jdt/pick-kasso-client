@@ -3,15 +3,20 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    height: 90vh;
+    /* height: 90vh; */
+    width: 70%;
+    margin: auto;
+    overflow: hidden;
 }
 .post-item{
     margin-top: 50px;
     display: flex;
+    /* object-fit: contain; */
+
 }
 .post-grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin-top: 50px;
-    gap: 30px;
+    gap: 10px;
 }

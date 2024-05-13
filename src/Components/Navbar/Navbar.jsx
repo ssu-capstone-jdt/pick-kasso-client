@@ -4,6 +4,7 @@ import './Navbar.css'
 
 import logo from '../Assets/logo-ICON@2x.png'
 import logo_icon from '../Assets/logo-text@2x.png'
+import GoogleAuthButton from '../GoogleAuthButton'
 
 const Navbar = () => {
 
@@ -24,7 +25,8 @@ const Navbar = () => {
         <li onClick={()=>{setMenu("mypage")}}><Link to='/mypage'>마이페이지</Link>{menu==="mypage"?<hr/>:<></>}</li>
       </ul>
       <div className="nav-login">
-        <Link to='/login'><button>로그인</button></Link>
+        {/* <Link to='/login'><button>로그인</button></Link> */}
+        <GoogleAuthButton/>
       </div>
     </div>
   )

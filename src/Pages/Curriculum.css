@@ -1,0 +1,70 @@
+/* Main Curriculum Container */
+.curriculum {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;  /* Ensures it takes the full width of its container */
+    padding: 20px 0;  /* Adds padding to top and bottom */
+    box-sizing: border-box;  /* Includes padding in width calculation */
+}
+
+/* Header styles */
+.header {
+    text-align: center;
+    width: 100%;  /* Full width for alignment */
+    max-width: 800px;  /* Limits the max width to centralize content */
+    margin: 0 auto;  /* Centers the header block horizontally */
+}
+
+.header h1 {
+    font-size: 24px;  /* Defines the size of the header */
+    margin-bottom: 10px;  /* Space below the header */
+    color: #333;  /* Text color */
+}
+
+.header hr {
+    width: 100%;  /* Line spans the width of the header */
+    height: 1px;
+    background-color: #ccc;  /* Light grey line color */
+    border: none;
+    margin-bottom: 20px;  /* Space below the line */
+}
+
+.header-info {
+    font-size: 16px;  /* Text size for the info */
+    color: #666;  /* Lighter text color */
+    padding: 0 20px;  /* Padding for text alignment */
+    text-align: center;  /* Centers the text */
+}
+
+/* Navigation button styles */
+.nav-diff {
+    display: flex;
+    justify-content: center;  /* Aligns buttons in the center */
+    gap: 10px;  /* Space between each button */
+    margin-bottom: 20px;  /* Space below the button group */
+}
+
+.nav-diff button {
+    background-color: #FBCDD4;  /* Light pink background */
+    color: #333;  /* Dark text for readability */
+    border: none;
+    border-radius: 20px;  /* Rounded corners */
+    padding: 10px 20px;  /* Padding inside the button */
+    font-size: 14px;  /* Text size inside the button */
+    cursor: pointer;  /* Pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s;  /* Smooth transition for hover effects */
+}
+
+.nav-diff button:hover {
+    background-color: #FAA2C1;  /* Darker pink on hover */
+    color: white;  /* White text on hover */
+}
+
+/* Ensure the curriculum content remains centered and does not stretch too wide */
+@media (min-width: 1024px) {
+    .curriculum {
+        max-width: 960px;  /* Adjust this to suit your layout needs */
+        margin: auto;  /* Centers the entire curriculum component */
+    }
+}

@@ -1,11 +1,97 @@
+/* Overall Calendar Styling */
 .calendar {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  max-width: 600px;
+  margin: 20px auto;
 }
 
-.calendar_icon {
-  width: 1050px; /* Adjust size as needed */
-  height: auto;
+/* Header Section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.header .col {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures the arrows and date are spread out */
+  width: 100%;
+}
+.text year {
+  padding: 10px;
+}
+
+.col-start {
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.col-end {
+  justify-content: flex-end;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.header span.text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header span.text.month {
+  margin-right: 5px;
+}
+
+.header img {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+}
+
+/* Days of the Week */
+.days {
+  display: flex;
+  padding: 5px 0;
+}
+
+.days .col {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  color: #666;
+}
+
+/* Cells of the Days */
+.body .row {
+  display: flex;
+}
+
+.body .col {
+  flex: 1;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.body .col:last-child {
+  border-right: none;
+}
+
+.cell.disabled {
+  pointer-events: none;
+}
+
+.cell.selected {
+  background-color: #bde0fe;
+}
+
+.cell.not-valid {
+  background-color: #f0f0f0;
+}
+
+.cell.valid {
+  background-color: #fff;
 }

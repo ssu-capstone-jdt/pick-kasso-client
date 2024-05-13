@@ -6,15 +6,15 @@ import './Home.css'
 const Home = () => {
   return (
     <div>
-      {/* <Calendar/> */}
-      <idv className="h-mycrr">
-        <idv className="left">
+      <Calendar/>
+      <div className="h-mycrr">
+        <div className="left">
           <p>나의 커리큘럼</p>
-        </idv>
-        <idv className="right">
+        </div>
+        <div className="right">
           <p>전체 보기</p>
-        </idv>
-      </idv>
+        </div>
+      </div>
       <Popular/>
     </div>
   )
