@@ -11,15 +11,17 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-      <div className="nav-logo">
-        <img src={logo} alt="" />
-        <img src={logo_icon} alt="" />
-      </div>
       <ul className="nav-menu">
-        <li onClick={()=>{setMenu("home")}}><Link to='/'>홈</Link>{menu==="home"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("post")}}>포스트{menu==="post"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("curriculum")}}>커리큘럼{menu==="curriculum"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("mypage")}}>마이페이지{menu==="mypage"?<hr/>:<></>}</li>
+        <li>
+          <div className="nav-logo">
+            <img src={logo} alt="" />
+            <img src={logo_icon} alt="" />
+          </div>
+        </li>
+        <li onClick={()=>{setMenu("home")}}><Link to='/home'>홈</Link>{menu==="home"?<hr/>:<></>}</li>
+        <li onClick={()=>{setMenu("post")}}><Link to='/post'>포스트</Link>{menu==="post"?<hr/>:<></>}</li>
+        <li onClick={()=>{setMenu("curriculum")}}><Link to='/curriculum'>커리큘럼</Link>{menu==="curriculum"?<hr/>:<></>}</li>
+        <li onClick={()=>{setMenu("mypage")}}><Link to='/mypage'>마이페이지</Link>{menu==="mypage"?<hr/>:<></>}</li>
       </ul>
       <div className="nav-login">
         <Link to='/login'><button>로그인</button></Link>

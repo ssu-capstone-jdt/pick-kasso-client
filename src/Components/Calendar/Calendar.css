@@ -1,0 +1,11 @@
+.calendar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.calendar_icon {
+  width: 1050px; /* Adjust size as needed */
+  height: auto;
+}
