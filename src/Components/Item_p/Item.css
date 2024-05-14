@@ -1,17 +1,13 @@
 .item{
-    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Full width to fill grid column */
     overflow: hidden;
-    /* margin: 10px */
-}
-.item p{
-    /* margin: 6px 10px;
-    padding: 8px; */
-}
-.item-prices{
-    /* display: flex;
-    gap: 20px;
-    font-size: 18px;
-    font-weight: bold; */
+    transition: transform 0.3s; /* Smooth scaling on hover */
+    border-radius: 10px; /* Rounded corners for visual appeal */
+    background-color: #fff; /* Optional background color */
+    padding: 5px;
 }
 .item-price-new{
     font-size: 18px;

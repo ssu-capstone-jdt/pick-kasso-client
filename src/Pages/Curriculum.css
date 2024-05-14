@@ -2,15 +2,15 @@
 .curriculum {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     width: 100%;  /* Ensures it takes the full width of its container */
     padding: 20px 0;  /* Adds padding to top and bottom */
     box-sizing: border-box;  /* Includes padding in width calculation */
 }
 
-/* Header styles */
 .header {
-    text-align: center;
+    /* text-align: center; */
+    flex-direction: column;
     width: 100%;  /* Full width for alignment */
     max-width: 800px;  /* Limits the max width to centralize content */
     margin: 0 auto;  /* Centers the header block horizontally */

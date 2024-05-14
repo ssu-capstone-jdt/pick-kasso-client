@@ -6,7 +6,7 @@ import Item_p from '../Item_p/Item'
 const Posts = () => {
   return (
     <div className='posts'>
-      <div className="post-item">
+      <div className="post-grid">
         {data_post.map((item,i)=>{
             return <Item_p key={i} 
             id={item.id} 

@@ -6,7 +6,7 @@ import logo from '../Assets/logo-ICON@2x.png'
 import logo_icon from '../Assets/logo-text@2x.png'
 import GoogleAuthButton from '../GoogleAuthButton'
 
-const Navbar = () => {
+const Navbar = ({ user, setUser }) => {
 
     const [menu, setMenu] = useState("home");
 
@@ -26,7 +26,13 @@ const Navbar = () => {
       </ul>
       <div className="nav-login">
         {/* <Link to='/login'><button>로그인</button></Link> */}
-        <GoogleAuthButton/>
+        {user ? (
+          <div>
+            <img src={user.picture} alt={user.name} style={{ borderRadius: '50%', width: '30px' }} />
+          </div>
+        ) : (
+          <GoogleAuthButton setUser={setUser} />
+        )}
       </div>
     </div>
   )
