@@ -27,7 +27,7 @@ function App() {
           <Route path=':product_Id' element={<Product/>}/>
         </Route>
         <Route path='/login' element={<LoginSignup/>}/>
-        <Route path="/oauth-callback" element={<OAuthCallback setUser={setUser} />} />
+        <Route path="/auth" element={<OAuthCallback setUser={setUser} />} />
       </Routes>
       <Footer/>
       </BrowserRouter>
