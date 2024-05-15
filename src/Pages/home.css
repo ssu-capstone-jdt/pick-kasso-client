@@ -5,7 +5,8 @@
   width: 100%;
   max-width: 1200px; /* Adjust based on your layout requirements */
   margin: auto;
-  padding: 20px;
+  margin-top: 40px;
+  /* background-color: aqua; */
 }
 
 .h-mycrr {
@@ -16,15 +17,17 @@
   margin-top: 20px;
   padding-bottom: 10px;
   padding-top: 10px;
+  /* background-color: aqua; */
 }
 
 .left p {
-  padding: 10px;
+  margin-left: 50px;
   font-size: 20px;
   font-weight: bold;
 }
 
 .right {
+  margin-right: 50px;
   padding: 10px;
   font-size: 20px;
   text-decoration: underline;

@@ -1,43 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Curriculums.css';
-import Item from '../Item/Item';
+import InfoComponent from '../InfoComponent';
+import './Curriculums.css'
 
-const Curriculums = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+const Curriculums = ({ activeButton }) => {
+  const [curriculums, setCurriculums] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     axios.get('http://localhost:8080/curriculums/all')
       .then(response => {
-        setItems(response.data); // Axios wraps the response data inside the data property
-        setLoading(false);
+        const data = response.data;  // Assume response.data is an array of curriculums
+        filterCurriculums(data, activeButton);
+        setError(false); // Reset error state if successful response
       })
-      .catch(err => {
-        console.error('Error fetching data:', err);
-        setError(err);
-        setLoading(false);
+      .catch(error => {
+        console.error('Error fetching curriculum Data:', error);
+        setError(true); // Set error state if failed to fetch data
       });
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, [activeButton]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading data!</p>;
+  const filterCurriculums = (data, buttonNumber) => {
+    let filteredData;
+    switch (buttonNumber) {
+      case 1: 
+        filteredData = data;
+        break;
+      case 2: 
+        filteredData = data.filter(cur => cur.cur_difficulty === 'easy');
+        break;
+      case 3: 
+        filteredData = data.filter(cur => cur.cur_difficulty === 'normal');
+        break;
+      case 4: 
+        filteredData = data.filter(cur => cur.cur_difficulty === 'hard');
+        break;
+      default:
+        filteredData = data;
+    }
+    setCurriculums(filteredData);
+  };
 
   return (
-    <div className='popular'>
-      <div className="popular-item">
-        {items.slice(0, 3).map((item, i) => {
-          return <Item key={i}
-            id={item.id}
-            name={item.name}
-            image={item.image}
-            // new_price={item.new_price}
-            // old_price={item.old_price}
-            cur_info={item.cur_info} />
-        })}
-      </div>
+    <div>
+      {error && <p>Error loading data!</p>}
+      {curriculums.map(cur => (
+        <InfoComponent
+          key={cur.cur_id}
+          title={cur.cur_title}
+          info={cur.cur_info}
+          background={cur.cur_background}
+          roundCount={cur.cur_round_count}
+          difficulty={cur.cur_difficulty}
+          state={cur.cur_state}
+        />
+      ))}
     </div>
   );
 }

@@ -1,0 +1,122 @@
+.mypage {
+    margin-top: 58px;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.mypage-left {
+    width: 20%;
+    background-color: #F8F8F8;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+}
+
+.mypage-user {
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.mypage-user img {
+    width: 60%;
+    height: 60px;
+    border-radius: 100%;
+}
+
+.mypage-user img.profile-pic {
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    margin-right: 20px;
+}
+
+.mypage-user img.settings-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.mypage-user p {
+    flex-grow: 1;
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.mypage-nav-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+}
+
+.mypage-nav-bar button {
+    background-color: #F8F8F8;
+    color: #333;
+    padding: 4px 25px;
+    padding-bottom: 2px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    width: fit-content; 
+    height: auto;
+    box-sizing: border-box;
+}
+.mypage-nav-bar .button-container {
+    display: flex;
+    align-items: center;
+    width: fit-content; 
+    justify-content: center;
+    transition: none;
+}
+
+.mypage-nav-bar .button-icon {
+    display: none; 
+    margin-left: 10px; 
+    width: 25px;
+    vertical-align: middle;
+    margin-bottom: 7px;
+}
+.mypage-nav-bar .button-container:hover .button-icon {
+    display: inline;
+}
+
+.mypage-nav-bar button:hover {
+    color: #9EB8E8;
+    transform: none;
+}
+
+.mypage-right {
+    flex-grow: 1;
+    padding: 20px;
+    /* background-color: #9EB8E8; */
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.mypage-right h {
+    padding-top: 20px;
+    padding-left: 7px;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333; 
+}
+
+.mypage-right hr {
+    border: 0;
+    height: 1px;
+    background-color: rgb(58, 58, 58);
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 100%;
+}

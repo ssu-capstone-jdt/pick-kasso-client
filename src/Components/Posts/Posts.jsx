@@ -1,24 +1,37 @@
-import React from 'react'
-import './Posts.css'
-import data_post from '../Assets/post'
-import Item_p from '../Item_p/Item'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Posts.css';
+import Item from '../Item_p/Item';
 
 const Posts = () => {
+  const [paintings, setPaintings] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/paintings/all")
+      .then(response => {
+        setPaintings(response.data.painting_list);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the paintings', error);
+      });
+  }, []);
+
   return (
     <div className='posts'>
       <div className="post-grid">
-        {data_post.map((item,i)=>{
-            return <Item_p key={i} 
-            id={item.id} 
-            // name={item.name} 
-            image={item.image} 
-            // new_price={item.new_price} 
-            // old_price={item.old_price}
-            />
-        })}
+        {paintings.map((item, i) => (
+          <Item key={i}
+            image={item.painting_profile}
+            nickname={item.painter_nickname}
+            title={item.painting_title}
+            created_at={item.created_at}
+            curriculum_title={item.curriculum_title}
+            curriculum_info={item.curriculum_info}
+          />
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default Posts
+export default Posts;

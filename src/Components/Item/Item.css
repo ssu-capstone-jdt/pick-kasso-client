@@ -3,16 +3,6 @@
     overflow: hidden;
     /* margin: 10px */
 }
-.item p{
-    /* margin: 6px 10px;
-    padding: 8px; */
-}
-.item-prices{
-    /* display: flex;
-    gap: 20px;
-    font-size: 18px;
-    font-weight: bold; */
-}
 .item-price-new{
     font-size: 18px;
 }

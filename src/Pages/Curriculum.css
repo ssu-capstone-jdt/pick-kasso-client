@@ -1,63 +1,81 @@
-/* Main Curriculum Container */
 .curriculum {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    width: 100%;  /* Ensures it takes the full width of its container */
-    padding: 20px 0;  /* Adds padding to top and bottom */
-    box-sizing: border-box;  /* Includes padding in width calculation */
+    width: 100%;
+    padding: 20px 0px;
+    box-sizing: border-box; 
+    /* background-color: #ffc0c0; */
 }
-
 .header {
-    /* text-align: center; */
+    display: flex;
     flex-direction: column;
-    width: 100%;  /* Full width for alignment */
-    max-width: 800px;  /* Limits the max width to centralize content */
-    margin: 0 auto;  /* Centers the header block horizontally */
+    /* background-color: #F6F6F6; */
+    margin: 70px 0;
+    width: 100%; 
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .header h1 {
-    font-size: 24px;  /* Defines the size of the header */
-    margin-bottom: 10px;  /* Space below the header */
-    color: #333;  /* Text color */
+    font-size: 24px; 
+    margin-bottom: 10px; 
+    color: #333; 
+    text-align: left;
+    width: 100%;
+    /* background-color: aqua; */
+    margin-left: 0;
+    padding-left: 0;
 }
 
 .header hr {
-    width: 100%;  /* Line spans the width of the header */
+    width: calc(100% - 3px);
     height: 1px;
-    background-color: #ccc;  /* Light grey line color */
+    background-color: #000000; 
     border: none;
-    margin-bottom: 20px;  /* Space below the line */
+    margin-bottom: 30px;  
 }
 
 .header-info {
-    font-size: 16px;  /* Text size for the info */
-    color: #666;  /* Lighter text color */
-    padding: 0 20px;  /* Padding for text alignment */
-    text-align: center;  /* Centers the text */
+    font-size: 16px; 
+    color: #000000;  
+    text-align: left; 
+    background-color: #F6F6F6;
+    font-weight: bold;
+    width: 97%;
+    padding: 18px;
+    border-radius: 10px;
+    margin-bottom: 0px;
 }
-
-/* Navigation button styles */
+.header-info p:not(:last-child) {
+    padding-bottom: 8px;
+}
+.header-info p:last-child {
+    padding-bottom: 0;
+}
 .nav-diff {
+    margin-left: 20px;
     display: flex;
-    justify-content: center;  /* Aligns buttons in the center */
-    gap: 10px;  /* Space between each button */
+    gap: 50px;  /* Space between each button */
     margin-bottom: 20px;  /* Space below the button group */
+    width: 100%;
+    margin-top: 0px;
+    /* background-color: aqua; */
 }
 
 .nav-diff button {
-    background-color: #FBCDD4;  /* Light pink background */
+    margin-top: 0px;
+    margin-bottom: 10px;
+    background-color: #F6F6F6;  /* Light pink background */
     color: #333;  /* Dark text for readability */
     border: none;
     border-radius: 20px;  /* Rounded corners */
-    padding: 10px 20px;  /* Padding inside the button */
-    font-size: 14px;  /* Text size inside the button */
+    padding: 10px 35px;  /* Padding inside the button */
+    font-size: 18px;  /* Text size inside the button */
+    font-weight: bold;
     cursor: pointer;  /* Pointer cursor on hover */
-    transition: background-color 0.3s, color 0.3s;  /* Smooth transition for hover effects */
 }
-
 .nav-diff button:hover {
-    background-color: #FAA2C1;  /* Darker pink on hover */
+    background-color: #FBCDD4;  /* Darker pink on hover */
     color: white;  /* White text on hover */
 }
 

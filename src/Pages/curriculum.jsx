@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Curriculums from '../Components/Curriculums/Curriculums'
 import './Curriculum.css'
 
 const Curriculum = () => {
+  const [activeButton, setActiveButton] = useState(1);
+  const handleButtonClick = (buttonNumber) => {
+    setActiveButton(buttonNumber);
+  };
+  
   return (
     <div>
       <div className="curriculum">
@@ -15,12 +20,28 @@ const Curriculum = () => {
           </div>
         </div>
         <div className="nav-diff">
-          <button>전체</button>
-          <button>초급</button>
-          <button>중급</button>
-          <button>상급</button>
+        <button 
+            style={activeButton === 1 ? { backgroundColor: '#FBCDD4', color: 'white' } : {}}
+            onClick={() => handleButtonClick(1)}>
+            전체
+          </button>
+          <button 
+            style={activeButton === 2 ? { backgroundColor: '#FBCDD4', color: 'white' } : {}}
+            onClick={() => handleButtonClick(2)}>
+            초급
+          </button>
+          <button 
+            style={activeButton === 3 ? { backgroundColor: '#FBCDD4', color: 'white'} : {}}
+            onClick={() => handleButtonClick(3)}>
+            중급
+          </button>
+          <button 
+            style={activeButton === 4 ? { backgroundColor: '#FBCDD4', color: 'white' } : {}}
+            onClick={() => handleButtonClick(4)}>
+            상급
+          </button>
         </div>
-        <Curriculums/>
+        <Curriculums activeButton={activeButton} />
       </div>
       
     </div>

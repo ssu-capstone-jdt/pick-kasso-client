@@ -1,10 +1,13 @@
 .navbar {
+  position: fixed; 
+  top: 0; 
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 80px; 
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
 }
 .nav-logo {
   display: flex;
@@ -20,9 +23,11 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  width: 90%;
+  /* background: #FBCDD4; */
 }
 .nav-menu li {
-  margin: 0 30px; /* 간격 */
+  margin: 0 35px; /* 간격 */
   position: relative;
 }
 .nav-menu a {
@@ -46,6 +51,7 @@
 }
 .nav-login button {
   padding: 6px 10px;
+  margin-left: 400px;
   background-color: #F3A6B3;
   color: white;
   border: none;

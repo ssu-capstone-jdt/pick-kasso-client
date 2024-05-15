@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%; /* Full width to fill grid column */
+    width: 100%;
     overflow: hidden;
-    transition: transform 0.3s; /* Smooth scaling on hover */
-    border-radius: 10px; /* Rounded corners for visual appeal */
-    background-color: #fff; /* Optional background color */
-    padding: 5px;
+    transition: transform 0.3s; 
+    border-radius: 8px;
+    /* background-color: #ff0000;  */
 }
 .item-price-new{
     font-size: 18px;
@@ -15,25 +14,9 @@
 .item-price-old{
     font-size: 18px;
 }
-.item:hover{
-    transform: scale(1.05);
-}
 .item img {
-    width: 140px;
-    height: 140px;
+    width: 225px;
+    height: 225px;
     object-fit: cover;
     object-position: center;
-    border-radius: 10px;
-    /* flex-direction: row;
-    justify-content: space-between; */
-}
-@media (max-width: 600px) {
-    .item {
-        width: 100%;  
-        height: auto;  
-    }
-
-    .item img {
-        height: 200px;
-    }
 }
