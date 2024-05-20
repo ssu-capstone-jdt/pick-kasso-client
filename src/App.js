@@ -7,6 +7,7 @@ import Curriculum from './Pages/Curriculum';
 import MyPage from './Pages/MyPage';
 import Footer from './Components/Footer/Footer';
 import OAuthCallback from './Components/OAuthCallback';
+import UserInfo from './Pages/UserInfo';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ function App() {
           <Route path='/curriculum' element={<Curriculum />} />
           <Route path='/mypage' element={<MyPage />} />
           <Route path="/auth" element={<OAuthCallback setUser={setUser} />} />
+          <Route path='/user' element={<UserInfo />}/>
         </Routes>
         <Footer />
       </BrowserRouter>

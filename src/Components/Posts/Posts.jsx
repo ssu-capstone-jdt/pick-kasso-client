@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api'; // 수정된 api 인스턴스 임포트
 import './Posts.css';
 import Item from '../Item_p/Item';
 
@@ -7,9 +7,9 @@ const Posts = () => {
   const [paintings, setPaintings] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/paintings/all")
+    api.get("/paintings/all") // 수정된 api 인스턴스 사용
       .then(response => {
-        setPaintings(response.data.painting_list);
+        setPaintings(response.data);
       })
       .catch(error => {
         console.error('There was an error fetching the paintings', error);
@@ -22,9 +22,9 @@ const Posts = () => {
         {paintings.map((item, i) => (
           <Item key={i}
             image={item.painting_profile}
-            nickname={item.painter_nickname}
+            nickname={item.member_nickname}
             title={item.painting_title}
-            created_at={item.created_at}
+            link={item.painting_link}
             curriculum_title={item.curriculum_title}
             curriculum_info={item.curriculum_info}
           />

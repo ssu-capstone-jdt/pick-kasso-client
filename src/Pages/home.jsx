@@ -1,7 +1,7 @@
 import React from 'react'
 import Calendar from '../Components/Calendar/Calendar'
-import Popular from '../Components/Popular/Popular'
 import './Home.css'
+import MyCurriculums from '../Components/MyCurriculums/MyCurriculums'
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
           <p>전체 보기</p>
         </div>
       </div>
-      <Popular/>
+      <MyCurriculums/>
     </div>
   )
 }

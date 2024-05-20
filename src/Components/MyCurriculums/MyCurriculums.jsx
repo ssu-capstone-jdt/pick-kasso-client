@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import './MyCurriculums.css'
-import axios from 'axios';
-import './MyCurriculums.css'
+import React, { useState, useEffect } from 'react';
+import api from '../api'; 
+import './MyCurriculums.css';
 
 const MyCurriculums = () => {
   const [curriculums, setCurriculums] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/curriculums')
+    api.get('/curriculums') 
       .then(response => {
-        setCurriculums(response.data.curriculum_list);
+        setCurriculums(response.data.data); 
       })
       .catch(error => {
         console.error('Failed to fetch curriculums:', error);
@@ -20,16 +19,16 @@ const MyCurriculums = () => {
     <div className="curriculum-container">
       {curriculums.map((curriculum, index) => (
         <div key={index} className="curriculum-item">
-          <img src={curriculum.cur_background} alt={curriculum.cur_title} />
-          <h3>{curriculum.cur_title}</h3>
-          <p>{curriculum.cur_info}</p>
-          <p>Rounds: {curriculum.cur_round_count}</p>
-          <p>Difficulty: {curriculum.cur_difficulty}</p>
-          <p>Status: {curriculum.cur_state}</p>
+          <img src={curriculum.curriculum_response.curriculum_background} alt={curriculum.curriculum_response.curriculum_title} />
+          <h3>{curriculum.curriculum_response.curriculum_title}</h3>
+          <p>{curriculum.curriculum_response.curriculum_info}</p>
+          <p>Rounds: {curriculum.curriculum_response.curriculum_round_count}</p>
+          <p>Difficulty: {curriculum.curriculum_response.curriculum_difficulty}</p>
+          <p>Status: {curriculum.state}</p>
         </div>
       ))}
     </div>
   );
 }
 
-export default MyCurriculums
+export default MyCurriculums;
