@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api'; // 수정된 api 인스턴스 임포트
+import api from '../api';
 import './Posts.css';
 import Item from '../Item_p/Item';
 
@@ -7,9 +7,9 @@ const Posts = () => {
   const [paintings, setPaintings] = useState([]);
 
   useEffect(() => {
-    api.get("/paintings/all") // 수정된 api 인스턴스 사용
+    api.get("/paintings/all") 
       .then(response => {
-        setPaintings(response.data);
+        setPaintings(response.data.data);
       })
       .catch(error => {
         console.error('There was an error fetching the paintings', error);

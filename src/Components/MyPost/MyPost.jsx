@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api'; // 수정된 api 인스턴스 사용
 import './MyPost.css';
 import moreIcon from '../Assets/more_ICON.png';
 
@@ -8,11 +8,11 @@ function MyPost() {
   const [showDropdown, setShowDropdown] = useState({});
 
   useEffect(() => {
-    axios.get('http://localhost:8080/paintings')
+    api.get('/paintings')
       .then(response => {
-        setPaintings(response.data.painting_list);
+        setPaintings(response.data.data);
         let initialDropdownState = {};
-        response.data.painting_list.forEach((painting, index) => {
+        response.data.data.forEach((painting, index) => {
           initialDropdownState[index] = false;
         });
         setShowDropdown(initialDropdownState);
@@ -26,10 +26,10 @@ function MyPost() {
     setShowDropdown(prev => ({ ...prev, [index]: !prev[index] }));
   };
 
-  const deletePainting = (paintingId) => {
-    axios.delete('http://localhost:8080/paintings', { data: { painting_id: paintingId } })
+  const deletePainting = (paintingLink) => {
+    api.delete('/paintings', { data: { painting_link: paintingLink } })
       .then(() => {
-        setPaintings(prev => prev.filter(painting => painting.painting_id !== paintingId));
+        setPaintings(prev => prev.filter(painting => painting.painting_link !== paintingLink));
         alert('Painting deleted successfully');
       })
       .catch(error => {
@@ -46,7 +46,7 @@ function MyPost() {
           <img src={moreIcon} alt="More" className="more-icon" onClick={() => toggleDropdown(index)} />
           {showDropdown[index] && (
             <div className="dropdown-menu">
-              <button onClick={() => deletePainting(painting.painting_id)}>삭제하기</button>
+              <button onClick={() => deletePainting(painting.painting_link)}>삭제하기</button>
             </div>
           )}
         </div>

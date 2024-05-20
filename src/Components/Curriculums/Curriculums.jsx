@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api'; // 수정된 api 인스턴스 사용
 import InfoComponent from '../InfoComponent';
-import './Curriculums.css'
+import './Curriculums.css';
 
 const Curriculums = ({ activeButton }) => {
   const [curriculums, setCurriculums] = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/curriculums/all')
+    api.get('/curriculums/all')
       .then(response => {
-        const data = response.data;  // Assume response.data is an array of curriculums
+        const data = response.data.data;
         filterCurriculums(data, activeButton);
-        setError(false); // Reset error state if successful response
+        setError(false);
       })
       .catch(error => {
-        console.error('Error fetching curriculum Data:', error);
-        setError(true); // Set error state if failed to fetch data
+        console.error('Error fetching curriculum data:', error);
+        setError(true);
       });
   }, [activeButton]);
 
@@ -27,13 +27,13 @@ const Curriculums = ({ activeButton }) => {
         filteredData = data;
         break;
       case 2: 
-        filteredData = data.filter(cur => cur.cur_difficulty === 'easy');
+        filteredData = data.filter(cur => cur.curriculum_response.curriculum_difficulty === 'easy');
         break;
       case 3: 
-        filteredData = data.filter(cur => cur.cur_difficulty === 'normal');
+        filteredData = data.filter(cur => cur.curriculum_response.curriculum_difficulty === 'normal');
         break;
       case 4: 
-        filteredData = data.filter(cur => cur.cur_difficulty === 'hard');
+        filteredData = data.filter(cur => cur.curriculum_response.curriculum_difficulty === 'hard');
         break;
       default:
         filteredData = data;
@@ -44,15 +44,15 @@ const Curriculums = ({ activeButton }) => {
   return (
     <div>
       {error && <p>Error loading data!</p>}
-      {curriculums.map(cur => (
+      {curriculums.map((cur, index) => (
         <InfoComponent
-          key={cur.cur_id}
-          title={cur.cur_title}
-          info={cur.cur_info}
-          background={cur.cur_background}
-          roundCount={cur.cur_round_count}
-          difficulty={cur.cur_difficulty}
-          state={cur.cur_state}
+          key={index}
+          title={cur.curriculum_response.curriculum_title}
+          info={cur.curriculum_response.curriculum_info}
+          background={cur.curriculum_response.curriculum_background}
+          roundCount={cur.curriculum_response.curriculum_round_count}
+          difficulty={cur.curriculum_response.curriculum_difficulty}
+          state={cur.state}
         />
       ))}
     </div>

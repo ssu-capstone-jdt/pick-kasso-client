@@ -1,15 +1,15 @@
 import React from 'react';
 import './Item.css';
 
-const Item = (props) => {
+const Item = ({ image, nickname, title, link, curriculum_title, curriculum_info }) => {
   return (
     <div className='item'>
-      <img src={props.image} alt="" />
-      <p>{props.nickname}</p>
-      <p>{props.title}</p> 
-      <p>{props.created_at}</p> 
-      <p>{props.curriculum_title}</p> 
-      <p>{props.curriculum_info}</p>
+      <img src={image} alt={title} />
+      <h3>{title}</h3>
+      <p>{nickname}</p>
+      <p>{curriculum_title}</p>
+      <p>{curriculum_info}</p>
+      <a href={link} target="_blank" rel="noopener noreferrer">View Painting</a>
     </div>
   );
 }
