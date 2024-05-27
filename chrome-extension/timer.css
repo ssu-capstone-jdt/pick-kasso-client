@@ -1,0 +1,11 @@
+#three-minute-timer {
+  font-size: 20px;
+  color: black;
+  background: white;
+  border: 1px solid black;
+  padding: 5px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+}

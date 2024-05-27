@@ -47,6 +47,7 @@ const Curriculums = ({ activeButton }) => {
       {curriculums.map((cur, index) => (
         <InfoComponent
           key={index}
+          id={cur.curriculum_response.curriculum_id}
           title={cur.curriculum_response.curriculum_title}
           info={cur.curriculum_response.curriculum_info}
           background={cur.curriculum_response.curriculum_background}

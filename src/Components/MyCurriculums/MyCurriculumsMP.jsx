@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import './MyCurriculums.css';
+import more_ICON from '../Assets/more_ICON.png';
 import curriculums_1 from '../Assets/curriculums_1.jpg';
 import curriculums_2 from '../Assets/curriculums_2.jpg';
 import curriculums_3 from '../Assets/curriculums_3.jpg';
@@ -13,9 +14,11 @@ import curriculums_8 from '../Assets/curriculums_8.jpg';
 import curriculums_9 from '../Assets/curriculums_9.jpg';
 import curriculums_10 from '../Assets/curriculums_10.jpg';
 
-const MyCurriculums = () => {
+const MyCurriculumsMP = () => {
   const [curriculums, setCurriculums] = useState([]);
+  const [dropdownVisible, setDropdownVisible] = useState(null);
   const navigate = useNavigate();
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     api.get('/curriculums')
@@ -25,6 +28,19 @@ const MyCurriculums = () => {
       .catch(error => {
         console.error('Failed to fetch curriculums:', error);
       });
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownVisible(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const imageMap = {
@@ -44,6 +60,21 @@ const MyCurriculums = () => {
     return imageMap[id] || curriculums_1;
   };
 
+  const handleMoreClick = (id) => {
+    setDropdownVisible(dropdownVisible === id ? null : id);
+  };
+
+  const handleDelete = (id) => {
+    api.delete(`/curriculums/${id}`)
+      .then(response => {
+        setCurriculums(curriculums.filter(cur => cur.curriculum_response.curriculum_id !== id));
+        setDropdownVisible(null);
+      })
+      .catch(error => {
+        console.error('Failed to delete curriculum:', error);
+      });
+  };
+
   const handleClick = (id) => {
     navigate(`/curriculuminfo/${id}`);
   };
@@ -59,6 +90,17 @@ const MyCurriculums = () => {
             />
             <h3>{curriculum.curriculum_response.curriculum_title}</h3>
             <p>{curriculum.curriculum_response.curriculum_info}</p>
+            <p>Rounds: {curriculum.curriculum_response.curriculum_round_count}</p>
+            <p>Difficulty: {curriculum.curriculum_response.curriculum_difficulty}</p>
+            <p>Status: {curriculum.state}</p>
+          </div>
+          <div className="more-icon-container" onClick={() => handleMoreClick(curriculum.curriculum_response.curriculum_id)}>
+            <img src={more_ICON} alt="more icon" />
+            {dropdownVisible === curriculum.curriculum_response.curriculum_id && (
+              <div ref={dropdownRef} className="dropdown-menu">
+                <button onClick={() => handleDelete(curriculum.curriculum_response.curriculum_id)}>삭제하기</button>
+              </div>
+            )}
           </div>
         </div>
       ))}
@@ -66,4 +108,4 @@ const MyCurriculums = () => {
   );
 }
 
-export default MyCurriculums;
+export default MyCurriculumsMP;

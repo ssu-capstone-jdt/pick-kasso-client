@@ -20,9 +20,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run copy-extension",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "copy-extension": "cp -r chrome-extension/* build/"
   },
   "eslintConfig": {
     "extends": [
@@ -46,5 +47,8 @@
     "workerDirectory": [
       "public"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

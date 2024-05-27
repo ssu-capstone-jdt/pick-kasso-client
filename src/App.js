@@ -8,6 +8,8 @@ import MyPage from './Pages/MyPage';
 import Footer from './Components/Footer/Footer';
 import OAuthCallback from './Components/OAuthCallback';
 import UserInfo from './Pages/UserInfo';
+import CurriculumInfo from './Pages/CurriculumInfo';
+import LocalCurr from './Pages/LocalCurr';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,9 +29,11 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/post' element={<Post />} />
           <Route path='/curriculum' element={<Curriculum />} />
+          <Route path='/curriculum/:id' element={<LocalCurr />} />
           <Route path='/mypage' element={<MyPage />} />
           <Route path="/auth" element={<OAuthCallback setUser={setUser} />} />
           <Route path='/user' element={<UserInfo />}/>
+          <Route path='/curriculuminfo/:id' element={<CurriculumInfo />} />
         </Routes>
         <Footer />
       </BrowserRouter>

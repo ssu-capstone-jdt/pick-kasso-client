@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import MyPost from '../Components/MyPost/MyPost';
-import MyCurriculums from '../Components/MyCurriculums/MyCurriculums';
 import './MyPage.css';
 import userImage from '../Components/Assets/userImage.png';
 import setIcon from '../Components/Assets/setIcon.png';
 import arrow_ICON from '../Components/Assets/arrow_ICON.png';
+import MyCurriculumsMP from '../Components/MyCurriculums/MyCurriculumsMP';
 
 const MyPage = () => {
   const location = useLocation();
@@ -64,7 +64,7 @@ const MyPage = () => {
       <div className="mypage-right">
         {activeButton === 1 ? <h>나의 그림</h> : <h>나의 보관함</h>}
         <hr/>
-        {activeButton === 1 ? <MyPost/> : <MyCurriculums/>}
+        {activeButton === 1 ? <MyPost/> : <MyCurriculumsMP/>}
       </div>
     </div>
   );
