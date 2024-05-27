@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import MyPost from '../Components/MyPost/MyPost';
 import MyCurriculums from '../Components/MyCurriculums/MyCurriculums';
 import './MyPage.css';
@@ -7,8 +8,13 @@ import setIcon from '../Components/Assets/setIcon.png';
 import arrow_ICON from '../Components/Assets/arrow_ICON.png';
 
 const MyPage = () => {
-  const [activeButton, setActiveButton] = useState(1);
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const initialActiveButton = parseInt(queryParams.get('activeButton'), 10) || 1;
+
+  const [activeButton, setActiveButton] = useState(initialActiveButton);
   const [hoverState, setHoverState] = useState({ button1: false, button2: false });
+  const [menu, setMenu] = useState("home");
 
   const handleButtonClick = (buttonNumber) => {
     setActiveButton(buttonNumber);
@@ -18,13 +24,23 @@ const MyPage = () => {
     setHoverState(prev => ({ ...prev, [buttonId]: isHovering }));
   };
 
+  useEffect(() => {
+    setActiveButton(initialActiveButton);
+    window.scrollTo(0, 0);
+  }, [initialActiveButton]);
+
   return (
     <div className='mypage'>
       <div className="mypage-left">
         <div className="mypage-user">
           <img src={userImage} alt="" className="profile-pic" />
           <p>nickname</p>
-          <img src={setIcon} alt="" className="settings-icon" />
+          <div className="mypage-user-settings" onClick={() => { setMenu("user") }}>
+            <Link to="/user">
+              <img src={setIcon} alt="" />
+            </Link>
+            {menu === "user" ? <hr /> : <></>}
+          </div>
         </div>
         <div className="mypage-nav-bar">
           <div className="button-container" onMouseEnter={() => handleHover('button1', true)} onMouseLeave={() => handleHover('button1', false)}>

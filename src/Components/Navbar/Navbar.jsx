@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import './Navbar.css';
 
 import logo from '../Assets/logo-ICON@2x.png';
 import logo_icon from '../Assets/logo-text@2x.png';
 import GoogleAuthButton from '../GoogleAuthButton';
+import defaultUserImage from '../Assets/userImage.png'; // Import the default user image
 
 const Navbar = ({ user, setUser }) => {
     const [menu, setMenu] = useState("home");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [profileImage, setProfileImage] = useState(null);
+
+    useEffect(() => {
+        const accessToken = Cookies.get('access_token');
+        if (accessToken) {
+            setIsLoggedIn(true);
+            const storedUser = JSON.parse(sessionStorage.getItem('user'));
+            if (storedUser) {
+                setProfileImage(storedUser.profile);
+                console.log("Profile Image URL:", storedUser.profile); // Debugging
+            }
+        }
+    }, []);
 
     return (
         <div className='navbar'>
@@ -23,10 +39,12 @@ const Navbar = ({ user, setUser }) => {
                 <li onClick={() => { setMenu("curriculum") }}><Link to='/curriculum'>커리큘럼</Link>{menu === "curriculum" ? <hr /> : <></>}</li>
                 <li onClick={() => { setMenu("mypage") }}><Link to='/mypage'>마이페이지</Link>{menu === "mypage" ? <hr /> : <></>}</li>
                 <div className="nav-login">
-                    {user ? (
-                        <div>
-                            <img src={user.profile_link} alt={user.nickname} style={{ borderRadius: '100%', width: '20px' }} />
-                            {/* <span style={{ marginLeft: '10px' }}>{user.nickname}</span> */}
+                    {isLoggedIn ? (
+                        <div className="user-image-container" onClick={() => { setMenu("user") }}>
+                            <Link to="/user">
+                                <img src={profileImage || defaultUserImage} alt="User" className="user-image" />
+                            </Link>
+                            {menu === "user" ? <hr /> : <></>}
                         </div>
                     ) : (
                         <GoogleAuthButton setUser={setUser} />

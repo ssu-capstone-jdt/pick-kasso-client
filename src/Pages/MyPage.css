@@ -28,6 +28,7 @@
     width: 60%;
     height: 60px;
     border-radius: 100%;
+    
 }
 
 .mypage-user img.profile-pic {
@@ -37,7 +38,7 @@
     margin-right: 20px;
 }
 
-.mypage-user img.settings-icon {
+.mypage-user-settings img {
     width: 25px;
     height: 25px;
 }

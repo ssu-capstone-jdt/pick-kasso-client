@@ -37,3 +37,17 @@
 .right p:hover {
   text-decoration: underline;
 }
+
+.custom-link {
+  text-decoration: none; 
+  color: inherit;
+}
+
+.custom-link p {
+  margin: 0;
+}
+
+.custom-link p:hover {
+  color: #F3A6B3; 
+}
+
