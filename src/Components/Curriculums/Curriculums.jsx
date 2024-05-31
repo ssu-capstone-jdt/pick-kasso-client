@@ -27,13 +27,13 @@ const Curriculums = ({ activeButton }) => {
         filteredData = data;
         break;
       case 2: 
-        filteredData = data.filter(cur => cur.curriculum_response.curriculum_difficulty === 'easy');
+        filteredData = data.filter(cur => cur.curriculum_response.curriculum_difficulty === 'Easy');
         break;
       case 3: 
-        filteredData = data.filter(cur => cur.curriculum_response.curriculum_difficulty === 'normal');
+        filteredData = data.filter(cur => cur.curriculum_response.curriculum_difficulty === 'Normal');
         break;
       case 4: 
-        filteredData = data.filter(cur => cur.curriculum_response.curriculum_difficulty === 'hard');
+        filteredData = data.filter(cur => cur.curriculum_response.curriculum_difficulty === 'Hard');
         break;
       default:
         filteredData = data;
@@ -50,7 +50,7 @@ const Curriculums = ({ activeButton }) => {
           id={cur.curriculum_response.curriculum_id}
           title={cur.curriculum_response.curriculum_title}
           info={cur.curriculum_response.curriculum_info}
-          background={cur.curriculum_response.curriculum_background}
+          background={cur.curriculum_response.curriculum_painting}
           roundCount={cur.curriculum_response.curriculum_round_count}
           difficulty={cur.curriculum_response.curriculum_difficulty}
           state={cur.state}

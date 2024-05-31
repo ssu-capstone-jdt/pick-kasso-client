@@ -1,12 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="kr">
 <head>
-  <title>3 Minute Timer</title>
+  <meta charset="UTF-8">  
+  <title>Timer</title>
+  <style>
+    body {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden; /* 내부 요소가 팝업창을 벗어나지 않도록 숨김 */
+      box-sizing: border-box;
+    }
+  </style>
   <script defer src="popup.js"></script>
   <link rel="stylesheet" href="timer.css">
 </head>
 <body>
   <h1>Timer</h1>
-  <button id="timer-button">Start Timer</button>
+  <div class="timer-container">
+    <button id="timer-button">Start Timer</button>
+  </div>
+  <input type="button" value="test" id="btn">
 </body>
 </html>

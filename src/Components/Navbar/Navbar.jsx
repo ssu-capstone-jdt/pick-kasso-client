@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import api from '../api';
 import './Navbar.css';
 
 import logo from '../Assets/logo-ICON@2x.png';
 import logo_icon from '../Assets/logo-text@2x.png';
 import GoogleAuthButton from '../GoogleAuthButton';
-import defaultUserImage from '../Assets/userImage.png'; // Import the default user image
+import defaultUserImage from '../Assets/userImage.png';
 
 const Navbar = ({ user, setUser }) => {
     const [menu, setMenu] = useState("home");
@@ -16,14 +17,30 @@ const Navbar = ({ user, setUser }) => {
     useEffect(() => {
         const accessToken = Cookies.get('access_token');
         if (accessToken) {
-            setIsLoggedIn(true);
-            const storedUser = JSON.parse(sessionStorage.getItem('user'));
-            if (storedUser) {
-                setProfileImage(storedUser.profile);
-                console.log("Profile Image URL:", storedUser.profile); // Debugging
-            }
+            api.get('/users', { headers: { Authorization: `Bearer ${accessToken}` } })
+                .then(response => {
+                    const userData = response.data.data;
+                    if (response.data.success) {
+                        sessionStorage.setItem('user', JSON.stringify(userData));
+                        setUser(userData);
+                        setProfileImage(userData.profile);
+                        setIsLoggedIn(true);
+                    } else {
+                        // If success is false, initiate OAuth login
+                        handleLogin();
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching user data: ", error);
+                    // On error, also initiate OAuth login
+                    handleLogin();
+                });
         }
-    }, []);
+    }, [setUser]);
+
+    const handleLogin = () => {
+        window.location.href = 'https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=914974225921-qkl53ra0h3nfotk5nsusarb8gh0c68vj.apps.googleusercontent.com&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&access_type=offline&service=lso&o2v=2&ddm=0&flowName=GeneralOAuthFlow';
+    };
 
     return (
         <div className='navbar'>
@@ -47,7 +64,7 @@ const Navbar = ({ user, setUser }) => {
                             {menu === "user" ? <hr /> : <></>}
                         </div>
                     ) : (
-                        <GoogleAuthButton setUser={setUser} />
+                        <GoogleAuthButton handleLogin={handleLogin} />
                     )}
                 </div>
             </ul>

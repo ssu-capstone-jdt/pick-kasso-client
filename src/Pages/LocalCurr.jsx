@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import api from '../Components/api';
 import './LocalCurr.css';
+import curriculums_1 from '../Components/Assets/curriculums_1.jpg';
+import curriculums_2 from '../Components/Assets/curriculums_2.jpg';
+import curriculums_3 from '../Components/Assets/curriculums_3.jpg';
+import curriculums_4 from '../Components/Assets/curriculums_4.jpg';
+import curriculums_5 from '../Components/Assets/curriculums_5.jpg';
+import curriculums_6 from '../Components/Assets/curriculums_6.jpg';
+import curriculums_7 from '../Components/Assets/curriculums_7.jpg';
+import curriculums_8 from '../Components/Assets/curriculums_8.jpg';
+import curriculums_9 from '../Components/Assets/curriculums_9.jpg';
+import curriculums_10 from '../Components/Assets/curriculums_10.jpg';
 
 const LocalCurr = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [curriculum, setCurriculum] = useState(null);
   const [error, setError] = useState(false);
 
@@ -20,11 +31,28 @@ const LocalCurr = () => {
       });
   }, [id]);
 
+  const imageMap = {
+    1: curriculums_1,
+    2: curriculums_2,
+    3: curriculums_3,
+    4: curriculums_4,
+    5: curriculums_5,
+    6: curriculums_6,
+    7: curriculums_7,
+    8: curriculums_8,
+    9: curriculums_9,
+    10: curriculums_10,
+  };
+
+  const getImageById = (id) => {
+    return imageMap[id] || curriculums_1;
+  };
+
   const handleDownload = () => {
     api.post(`/curriculums/${id}`)
       .then(response => {
         console.log('Curriculum downloaded successfully:', response);
-        // Handle the response as needed
+        navigate(`/curriculuminfo/${id}`);
       })
       .catch(error => {
         console.error('Error downloading curriculum:', error);
@@ -43,15 +71,17 @@ const LocalCurr = () => {
     <div className="local-curriculum">
       <h1>{curriculum.curriculum_response.curriculum_title}</h1>
       <p>{curriculum.curriculum_response.curriculum_info}</p>
-      <img src={curriculum.curriculum_response.curriculum_background} alt="Background" />
+      <img src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
+           alt={curriculum.curriculum_response.curriculum_title}   
+      />
       <p>Number of Rounds: {curriculum.curriculum_response.curriculum_round_count}</p>
       <p>Difficulty: {curriculum.curriculum_response.curriculum_difficulty}</p>
       <p>Explanation: {curriculum.curriculum_response.curriculum_explanation}</p>
       <div className="rounds">
-        {curriculum.round_response.map((round, index) => (
+        {(curriculum.download_round_response || []).map((round, index) => (
           <div key={index} className="round">
             <h3>Round {round.order}</h3>
-            <p>Time: {round.time} minutes</p>
+            <p>Time: {round.time} seconds</p>
             <p>Explanation: {round.explanation}</p>
           </div>
         ))}

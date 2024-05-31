@@ -54,7 +54,7 @@ const MyCurriculums = () => {
         <div key={index} className="curriculum-item">
           <div onClick={() => handleClick(curriculum.curriculum_response.curriculum_id)}>
             <img
-              src={curriculum.curriculum_response.curriculum_background || getImageById(curriculum.curriculum_response.curriculum_id)}
+              src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
               alt={curriculum.curriculum_response.curriculum_title}
             />
             <h3>{curriculum.curriculum_response.curriculum_title}</h3>

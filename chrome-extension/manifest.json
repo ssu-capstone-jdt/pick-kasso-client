@@ -1,18 +1,24 @@
 {
   "manifest_version": 3,
-  "name": "3 Minute Timer",
+  "name": "Pick카소 타이머 프로그램",
   "version": "1.0",
-  "description": "A Chrome extension to set a 3-minute countdown timer.",
+  "description": "Pick카소와 기능하는 타이머 프로그램",
   "permissions": [
     "activeTab",
     "scripting",
+    "tabs",
     "storage"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    }
   },
   "content_scripts": [
     {

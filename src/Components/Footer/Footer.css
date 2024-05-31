@@ -6,6 +6,7 @@
     background-color: #343A40; 
     color: white;
     font-size: 14px;
+    z-index: 9999;
 }
 .footer-center {
     display: flex;

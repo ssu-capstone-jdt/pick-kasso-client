@@ -23,7 +23,12 @@ const MyCurriculumsMP = () => {
   useEffect(() => {
     api.get('/curriculums')
       .then(response => {
-        setCurriculums(response.data.data);
+        const fetchedCurriculums = response.data.data.map(item => ({
+          curriculum_response: item.curriculum_response,
+          round_response: item.round_response,
+          user_round_response: item.user_round_response
+        }));
+        setCurriculums(fetchedCurriculums);
       })
       .catch(error => {
         console.error('Failed to fetch curriculums:', error);
@@ -85,7 +90,7 @@ const MyCurriculumsMP = () => {
         <div key={index} className="curriculum-item">
           <div onClick={() => handleClick(curriculum.curriculum_response.curriculum_id)}>
             <img
-              src={curriculum.curriculum_response.curriculum_background || getImageById(curriculum.curriculum_response.curriculum_id)}
+              src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
               alt={curriculum.curriculum_response.curriculum_title}
             />
             <h3>{curriculum.curriculum_response.curriculum_title}</h3>

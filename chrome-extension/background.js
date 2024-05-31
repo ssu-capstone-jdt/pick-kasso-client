@@ -1,5 +1,6 @@
 let timerInterval;
 let totalSeconds = 180;
+let invoiceValue; 
 
 chrome.runtime.onInstalled.addListener(() => {
   console.log('Extension Installed');
@@ -7,18 +8,20 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'startTimer') {
-    startTimer();
+    const value = request.value || 180; // request로부터 initialValue를 가져옴
+    startTimer(value);
     sendResponse({ status: 'timer started' });
   } else if (request.action === 'getTimer') {
-    sendResponse({ totalSeconds });
+    sendResponse({ totalSeconds, firstSecond });
   }
 });
 
-function startTimer() {
+function startTimer(initialValue) {
   if (timerInterval) {
     clearInterval(timerInterval);
   }
-  totalSeconds = 180;
+  totalSeconds = initialValue || 180; // 초기값 설정, 기본값은 180초
+  firstSecond = totalSeconds;
 
   timerInterval = setInterval(() => {
     totalSeconds--;

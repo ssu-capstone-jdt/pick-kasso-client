@@ -1,11 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../Components/api';
+import curriculums_1 from '../Components/Assets/curriculums_1.jpg';
+import curriculums_2 from '../Components/Assets/curriculums_2.jpg';
+import curriculums_3 from '../Components/Assets/curriculums_3.jpg';
+import curriculums_4 from '../Components/Assets/curriculums_4.jpg';
+import curriculums_5 from '../Components/Assets/curriculums_5.jpg';
+import curriculums_6 from '../Components/Assets/curriculums_6.jpg';
+import curriculums_7 from '../Components/Assets/curriculums_7.jpg';
+import curriculums_8 from '../Components/Assets/curriculums_8.jpg';
+import curriculums_9 from '../Components/Assets/curriculums_9.jpg';
+import curriculums_10 from '../Components/Assets/curriculums_10.jpg';
+import FileUploadButton from '../Components/FileUploadButton/FileUploadButton';
 
 const CurriculumInfo = () => {
   const { id } = useParams();
   const [curriculum, setCurriculum] = useState(null);
   const [isChromeRuntimeAvailable, setIsChromeRuntimeAvailable] = useState(false);
+  const [activeButtonIndex, setActiveButtonIndex] = useState(null);
+
+  const imageMap = {
+    1: curriculums_1,
+    2: curriculums_2,
+    3: curriculums_3,
+    4: curriculums_4,
+    5: curriculums_5,
+    6: curriculums_6,
+    7: curriculums_7,
+    8: curriculums_8,
+    9: curriculums_9,
+    10: curriculums_10,
+  };
+
+  const getImageById = (id) => {
+    return imageMap[id] || curriculums_1;
+  };
+
+  const handleButtonClick = (index) => {
+    setActiveButtonIndex(index);
+    alert('타이머 준비 완료');
+  };
 
   useEffect(() => {
     api.get(`/curriculums/${id}`)
@@ -28,15 +62,6 @@ const CurriculumInfo = () => {
     }
   }, []);
 
-  const startTimer = () => {
-    if (isChromeRuntimeAvailable) {
-      // Send a message to the content script
-      window.postMessage({ type: 'START_TIMER' }, '*');
-    } else {
-      console.log('Chrome runtime not available');
-    }
-  };
-
   if (!curriculum) {
     return <div>Loading...</div>;
   }
@@ -45,27 +70,31 @@ const CurriculumInfo = () => {
     <div className="local-curriculum">{/* css 수정 할 때 여기 LocalCurr css랑 연결됨 주의 */}
       <h1>{curriculum.curriculum_response.curriculum_title}</h1>
       <p>{curriculum.curriculum_response.curriculum_info}</p>
-      <img src={curriculum.curriculum_response.curriculum_background} alt="Background" />
+      <img src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
+           alt={curriculum.curriculum_response.curriculum_title}   
+      />
       <p>Number of Rounds: {curriculum.curriculum_response.curriculum_round_count}</p>
       <p>Difficulty: {curriculum.curriculum_response.curriculum_difficulty}</p>
       <p>Explanation: {curriculum.curriculum_response.curriculum_explanation}</p>
       <div className="rounds">
-        {curriculum.round_response.map((round, index) => (
+        {curriculum.download_round_response.map((round, index) => (
           <div key={index} className="round">
             <h3>Round {round.order}</h3>
-            <p>Time: {round.time} minutes</p>
+            <p>Time: {round.time} seconds</p>
             <p>Explanation: {round.explanation}</p>
-          <button onClick={startTimer}disabled={!isChromeRuntimeAvailable}>
-        타이머
-      </button>
-      {!isChromeRuntimeAvailable && (
-        <p style={{ color: 'red' }}>
-          Timer functionality is only available in the Chrome extension.
-        </p>
-      )}
-      </div>
+            {round.is_upload_successful === "True" && <p>완료!</p>}
+            <button id={activeButtonIndex === index ? 'invoice_no_1' : 'invoice'}
+                    value={round.time} onClick={() => handleButtonClick(index)} disabled={!isChromeRuntimeAvailable}>
+              타이머
+            </button>
+            <FileUploadButton roundId={round.id} />
+            {!isChromeRuntimeAvailable && (
+              <p style={{ color: 'red' }}>
+                Timer functionality is only available in the Chrome extension.
+              </p>
+            )}
+          </div>
         ))}
-      
       </div>
     </div>
   );
