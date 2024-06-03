@@ -1,98 +1,55 @@
-let invoiceValue;
+document.addEventListener('DOMContentLoaded', function() {
+  const timerButton = document.getElementById('timerButton');
 
-document.addEventListener('DOMContentLoaded', () => {
-  const timerButton = document.getElementById('timer-button');
-
-  if (timerButton) {
-    // Initial display
-    chrome.runtime.sendMessage({ action: 'getTimer' }, (response) => {
-      if (response.totalSeconds < response.firstSecond) {
-        updateTimerDisplay(timerButton);
-      } else {
-        timerButton.innerHTML = 'Start Timer';
-      }
-    });
-
-    timerButton.addEventListener('click', () => {
-      chrome.runtime.sendMessage({ action: 'startTimer', value: invoiceValue }, (response) => {
-        console.log('Response from background script:', response);
-        if (response.status === 'timer started') {
-          updateTimerDisplay(timerButton);
-        }
+  chrome.runtime.sendMessage({ action: 'getRemainingTime' }, (response) => {
+    if (response.remainingTime > 0) {
+      updateButtonWithRemainingTime(response.remainingTime);
+      startTimer(response.remainingTime);
+    } else {
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          func: () => document.getElementById('invoice_no_1')?.value
+        }, (results) => {
+          if (results && results[0] && results[0].result) {
+            const value = results[0].result;
+            const timeFormat = formatTime(parseInt(value, 10));
+            timerButton.textContent = timeFormat;
+            timerButton.disabled = false;
+            timerButton.addEventListener('click', () => startTimer(parseInt(value, 10)));
+          }
+        });
       });
-    });
-  } else {
-    console.error('Timer button not found');
-  }
-
-  var btn01 = document.querySelector('#btn');
-  if (btn01) {
-    btn01.addEventListener("click", assa);
-    btn01.addEventListener("click", assa1);
-  } else {
-    console.error('btn01 not found');
-  }
-});
-
-function updateTimerDisplay(buttonElement) {
-  chrome.runtime.sendMessage({ action: 'getTimer' }, (response) => {
-    if (response.totalSeconds >= 0) {
-      const minutes = Math.floor(response.totalSeconds / 60);
-      const seconds = response.totalSeconds % 60;
-      buttonElement.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-      
-      if (response.totalSeconds > 0) {
-        setTimeout(() => updateTimerDisplay(buttonElement), 1000);
-      } else {
-        buttonElement.innerHTML = 'Time\'s up!';
-      }
     }
   });
-}
 
-function assa(e){
-  chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    const activeTabId = tabs[0].id;
-    
-    chrome.scripting.executeScript(
-      {
-        target: {tabId: activeTabId},
-        func: () => {
-          document.querySelector('#invoice_no_0').value = '123123';
-        }
-      },
-      (results) => {
-        console.log('Script executed.');
+  function formatTime(duration) {
+    const minutes = Math.floor(duration / 60);
+    const seconds = duration % 60;
+    return `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+  function updateButtonWithRemainingTime(duration) {
+    timerButton.textContent = formatTime(duration);
+    timerButton.disabled = true;
+  }
+
+  function startTimer(duration) {
+    let timer = duration;
+    timerButton.disabled = true;
+
+    const interval = setInterval(() => {
+      if (timer <= 0) {
+        clearInterval(interval);
+        chrome.runtime.sendMessage({ action: 'timerFinished' });
+      } else {
+        chrome.runtime.sendMessage({ action: 'getRemainingTime' }, (response) => {
+          timer = response.remainingTime;
+          timerButton.textContent = formatTime(timer);
+        });
       }
-    );
-  });
-}
+    }, 1000);
 
-function assa1(e) {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    const activeTabId = tabs[0].id;
-
-    chrome.scripting.executeScript(
-      {
-        target: { tabId: activeTabId },
-        func: () => {
-          return document.querySelector('#invoice_no_1').value;
-        }
-      },
-      (results) => {
-        if (results && results[0]) {
-          invoiceValue = results[0].result;
-          alert('Invoice No: ' + invoiceValue);
-
-          // Start the timer with the value obtained
-          chrome.runtime.sendMessage({ action: 'startTimer', value: invoiceValue }, (response) => {
-            console.log('Response from background script:', response);
-            if (response.status === 'timer started') {
-              updateTimerDisplay(document.getElementById('timer-button'));
-            }
-          });
-        }
-      }
-    );
-  });
-}
+    chrome.runtime.sendMessage({ action: 'startTimer', duration: timer });
+  }
+});

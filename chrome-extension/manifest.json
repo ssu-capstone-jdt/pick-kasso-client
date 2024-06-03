@@ -1,29 +1,17 @@
 {
   "manifest_version": 3,
-  "name": "Pick카소 타이머 프로그램",
+  "name": "Pick카소 타이머2.0",
   "version": "1.0",
-  "description": "Pick카소와 기능하는 타이머 프로그램",
-  "permissions": [
-    "activeTab",
-    "scripting",
-    "tabs",
-    "storage"
-  ],
-  "background": {
-    "service_worker": "background.js"
-  },
+  "permissions": ["activeTab", "storage", "scripting"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/icon.png",
-      "48": "images/icon.png",
-      "128": "images/icon.png"
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
     }
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ]
+  "background": {
+    "service_worker": "background.js"
+  }
 }

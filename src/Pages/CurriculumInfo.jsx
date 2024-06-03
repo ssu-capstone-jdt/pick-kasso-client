@@ -58,7 +58,7 @@ const CurriculumInfo = () => {
     } else {
       // 개발 환경에서 테스트하기 위해 강제로 true로 설정
       setIsChromeRuntimeAvailable(true);
-      //react app이 확장 프로그램으로 실행되는 것이 아니면 무조건 false이기 때문에 이거 크게 바꾸거나 해야 할거 같다
+      // react app이 확장 프로그램으로 실행되는 것이 아니면 무조건 false이기 때문에 이거 크게 바꾸거나 해야 할거 같다
     }
   }, []);
 
@@ -67,7 +67,7 @@ const CurriculumInfo = () => {
   }
 
   return (
-    <div className="local-curriculum">{/* css 수정 할 때 여기 LocalCurr css랑 연결됨 주의 */}
+    <div className="local-curriculum">
       <h1>{curriculum.curriculum_response.curriculum_title}</h1>
       <p>{curriculum.curriculum_response.curriculum_info}</p>
       <img src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
@@ -83,11 +83,18 @@ const CurriculumInfo = () => {
             <p>Time: {round.time} seconds</p>
             <p>Explanation: {round.explanation}</p>
             {round.is_upload_successful === "True" && <p>완료!</p>}
-            <button id={activeButtonIndex === index ? 'invoice_no_1' : 'invoice'}
-                    value={round.time} onClick={() => handleButtonClick(index)} disabled={!isChromeRuntimeAvailable}>
+            <button 
+              id={activeButtonIndex === index ? 'invoice_no_1' : 'invoice'}
+              value={round.time} 
+              onClick={() => handleButtonClick(index)} 
+              disabled={!isChromeRuntimeAvailable}>
               Pick카소 타이머 사용
             </button>
-            <FileUploadButton roundId={round.id} />
+            <FileUploadButton 
+              id={activeButtonIndex === index ? 'invoice_no_2' : ''} 
+              roundId={round.id} 
+              disabled={!(activeButtonIndex === index)}
+            />
             {!isChromeRuntimeAvailable && (
               <p style={{ color: 'red' }}>
                 Timer functionality is only available in the Chrome extension.

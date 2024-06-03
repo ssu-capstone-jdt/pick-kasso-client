@@ -38,7 +38,7 @@ function MyPost() {
   };
 
   const handleDelete = (paintingId) => {
-    api.delete('/paintings', { data: { painting_id: paintingId } })
+    api.delete(`/paintings/${paintingId}`)
       .then(() => {
         setPaintings(prev => prev.filter(painting => painting.id !== paintingId));
         setDropdownVisible(null);

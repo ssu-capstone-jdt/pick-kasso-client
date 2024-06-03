@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-  <meta charset="UTF-8">  
-  <title>Timer</title>
+    <meta charset="UTF-8"> 
   <style>
     body {
       width: 100px;
@@ -11,18 +10,17 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden; /* 내부 요소가 팝업창을 벗어나지 않도록 숨김 */
-      box-sizing: border-box;
+    }
+    button {
+      width: 80px;
+      height: 40px;
+      font-size: 12px;
     }
   </style>
-  <script defer src="popup.js"></script>
-  <link rel="stylesheet" href="timer.css">
 </head>
 <body>
-  <h1>Timer</h1>
-  <div class="timer-container">
-    <button id="timer-button">Start Timer</button>
-  </div>
-  <input type="button" value="test" id="btn">
+  <div>타이머</div>
+  <button id="timerButton" disabled>Start Timer</button>
+  <script src="popup.js"></script>
 </body>
 </html>

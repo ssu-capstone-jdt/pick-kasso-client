@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import api from '../api'; // Make sure to adjust the import path to your actual API module
-import './FileUploadButton.css'
+import './FileUploadButton.css';
 
-const FileUploadButton = ({ roundId }) => {
+const FileUploadButton = ({ roundId, id, disabled }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [paintingTitle, setPaintingTitle] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,7 +51,14 @@ const FileUploadButton = ({ roundId }) => {
 
     return (
         <div>
-            <button className="open-modal-button" onClick={() => setIsModalOpen(true)}>Upload Image</button>
+            <button 
+                className="open-modal-button" 
+                id={id}
+                disabled={disabled}
+                onClick={() => setIsModalOpen(true)}
+            >
+                Upload Image
+            </button>
             {isModalOpen && (
                 <div className="modal">
                     <div className="modal-content">
@@ -67,7 +74,14 @@ const FileUploadButton = ({ roundId }) => {
                             />
                             그림 비공개
                         </label>
-                        <button className="open-modal-button" onClick={handleFileUpload}>Upload</button>
+                        <button 
+                            className="open-modal-button" 
+                            onClick={handleFileUpload}
+                            id={id}
+                            disabled={disabled}
+                        >
+                            Upload
+                        </button>
                     </div>
                 </div>
             )}

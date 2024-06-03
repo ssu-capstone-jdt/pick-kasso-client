@@ -65,8 +65,9 @@ input[type="file"]:focus {
     cursor: pointer;
     transition: background-color 0.2s;
 }
-.modal-button-last-display {
-    padding: 100px;
+.open-modal-button:disabled {
+    opacity: 0.3; /* 투명도 적용 */
+    cursor: default; /* 커서 금지 표시 */
 }
 
 
