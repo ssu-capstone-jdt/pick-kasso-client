@@ -37,10 +37,10 @@ function MyPost() {
     setDropdownVisible(dropdownVisible === index ? null : index);
   };
 
-  const handleDelete = (paintingLink) => {
-    api.delete('/paintings', { data: { painting_link: paintingLink } })
+  const handleDelete = (paintingId) => {
+    api.delete('/paintings', { data: { painting_id: paintingId } })
       .then(() => {
-        setPaintings(prev => prev.filter(painting => painting.painting_link !== paintingLink));
+        setPaintings(prev => prev.filter(painting => painting.id !== paintingId));
         setDropdownVisible(null);
         alert('Painting deleted successfully');
       })
@@ -50,22 +50,22 @@ function MyPost() {
       });
   };
 
-  const handleClick = (paintingLink) => {
-    navigate(`/paintinginfo/${paintingLink}`);
+  const handleClick = (paintingId) => {
+    navigate(`/paintinginfo/${paintingId}`);
   };
 
   return (
     <div className="painting-container">
       {paintings.map((painting, index) => (
         <div key={index} className="painting-item">
-          <div onClick={() => handleClick(painting.painting_link)}>
+          <div onClick={() => handleClick(painting.id)}>
             <img src={painting.painting_link} alt={painting.painting_title} />
           </div>
           <div className="more-icon-container" onClick={() => handleMoreClick(index)}>
             <img src={moreIcon} alt="More" className="more-icon" />
             {dropdownVisible === index && (
               <div ref={dropdownRef} className="dropdown-menu">
-                <button onClick={() => handleDelete(painting.painting_link)}>삭제하기</button>
+                <button onClick={() => handleDelete(painting.id)}>삭제하기</button>
               </div>
             )}
           </div>

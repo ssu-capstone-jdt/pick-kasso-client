@@ -1,23 +1,10 @@
-// import React from 'react'
-// import './Calendar.css'
-// import calendar_icon from '../Assets/calendar@2x.png'
-
-// const Calendar = () => {
-//   return (
-//     <div className='calendar'>
-//       <img src={calendar_icon} alt="" className="calendar_icon"/>
-//     </div>
-//   )
-// }
-
-// export default Calendar
 import './Calendar.css'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import arrow_l from '../Assets/arrow_bk@2x.png'
 import arrow_r from '../Assets/arrow_bj@2x.png'
-import { format, addMonths, subMonths } from 'date-fns';
-import { startOfMonth, endOfMonth, startOfWeek, endOfWeek } from 'date-fns';
-import { isSameMonth, isSameDay, addDays, parse } from 'date-fns';
+import checkIcon from '../Assets/logo-ICON@2x.png';
+import api from '../api';
+import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSameMonth, isSameDay, addDays, parseISO } from 'date-fns';
 
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
     return (
@@ -53,7 +40,7 @@ const RenderDays = () => {
     return <div className="days row">{days}</div>;
 };
 
-const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
+const RenderCells = ({ currentMonth, selectedDate, onDateClick, paintings }) => {
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
     const startDate = startOfWeek(monthStart);
@@ -68,29 +55,33 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
         for (let i = 0; i < 7; i++) {
             formattedDate = format(day, 'd');
             const cloneDay = day;
+            const dayHasPainting = paintings.some(painting =>
+                isSameDay(parseISO(painting.local_date_time), cloneDay)
+            );
             days.push(
                 <div
                     className={`col cell ${
-                        !isSameMonth(day, monthStart)
+                        !isSameMonth(cloneDay, monthStart)
                             ? 'disabled'
-                            : isSameDay(day, selectedDate)
+                            : isSameDay(cloneDay, selectedDate)
                             ? 'selected'
-                            : format(currentMonth, 'M') !== format(day, 'M')
+                            : format(currentMonth, 'M') !== format(cloneDay, 'M')
                             ? 'not-valid'
                             : 'valid'
                     }`}
-                    key={day}
-                    onClick={() => onDateClick(parse(cloneDay))}
+                    key={cloneDay}
+                    // onClick={() => onDateClick(parse(cloneDay))}
                 >
                     <span
                         className={
-                            format(currentMonth, 'M') !== format(day, 'M')
+                            format(currentMonth, 'M') !== format(cloneDay, 'M')
                                 ? 'text not-valid'
                                 : ''
                         }
                     >
                         {formattedDate}
                     </span>
+                    {dayHasPainting && <img src={checkIcon} alt="Check" className="check-icon" />}
                 </div>,
             );
             day = addDays(day, 1);
@@ -108,6 +99,17 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
 export const Calendar = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
+    const [paintings, setPaintings] = useState([]);
+
+    useEffect(() => {
+        api.get('/paintings/')
+            .then(response => {
+                setPaintings(response.data.data);
+            })
+            .catch(error => {
+                console.error('Failed to fetch paintings:', error);
+            });
+    }, []);
 
     const prevMonth = () => {
         setCurrentMonth(subMonths(currentMonth, 1));
@@ -130,8 +132,10 @@ export const Calendar = () => {
                 currentMonth={currentMonth}
                 selectedDate={selectedDate}
                 onDateClick={onDateClick}
+                paintings={paintings}
             />
         </div>
     );
 };
-export default Calendar
+
+export default Calendar;

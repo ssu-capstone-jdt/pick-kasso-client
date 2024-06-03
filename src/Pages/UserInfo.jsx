@@ -37,18 +37,19 @@ const UserInfo = () => {
   };
 
   const handleCheckboxChange = () => {
-    setDeletePaintingState(deletePaintingState === false ? true : false);
+    setDeletePaintingState(!deletePaintingState);
   };
 
   const handleWithdrawal = () => {
     const accessToken = Cookies.get('access_token');
     if (accessToken) {
-      const formData = new FormData();
-      formData.append('delete_painting_state', deletePaintingState);
+      const data = {
+        delete_painting_state: deletePaintingState
+      };
 
       api.delete('/users/withdrawal', {
         headers: { Authorization: `Bearer ${accessToken}` },
-        data: formData,
+        data: data,
       })
       .then(response => {
         if (response.status === 200) {
@@ -92,10 +93,10 @@ const UserInfo = () => {
                 <label style={{ marginRight: '8px'}} >
                   <input style={{ marginRight: '5px', fontSize: '15px' }}
                     type="checkbox"
-                    checked={deletePaintingState === true}
+                    checked={deletePaintingState}
                     onChange={handleCheckboxChange}
                   />
-                  &nbsp;그림 삭제
+                  &nbsp;포스트한 그림도 같이 삭제하기
                 </label>
                 <button className="open-modal-button" onClick={handleWithdrawal}>확인</button>
               </div>

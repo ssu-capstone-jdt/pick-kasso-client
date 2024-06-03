@@ -85,7 +85,7 @@ const CurriculumInfo = () => {
             {round.is_upload_successful === "True" && <p>완료!</p>}
             <button id={activeButtonIndex === index ? 'invoice_no_1' : 'invoice'}
                     value={round.time} onClick={() => handleButtonClick(index)} disabled={!isChromeRuntimeAvailable}>
-              타이머
+              Pick카소 타이머 사용
             </button>
             <FileUploadButton roundId={round.id} />
             {!isChromeRuntimeAvailable && (
