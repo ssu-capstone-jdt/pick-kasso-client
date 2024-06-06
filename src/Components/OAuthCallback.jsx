@@ -30,7 +30,7 @@ function OAuthCallback({ setUser }) {
                 })
                 .catch(error => {
                     console.error("Error processing auth code: ", error);
-                    alert('Login failed.');
+                    alert('로그인 실패');
                 })
                 .finally(() => {
                     setIsRequesting(false);

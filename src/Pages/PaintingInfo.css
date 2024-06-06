@@ -1,0 +1,70 @@
+.PaintingInfo {
+  display: flex;
+  align-items: stretch; 
+  justify-content: center;
+  margin: 50px auto;
+  padding: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 10px;
+  max-width: 800px;
+  background-color: #fff;
+  margin-top: 80px;
+}
+
+.PaintingInfo-left {
+  flex: 1;
+}
+
+.PaintingInfo-left img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.PaintingInfo-right {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.PaintingInfo-currInfo-grid {
+  margin-bottom: 30px;
+}
+
+.PaintingInfo-currInfo-grid h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.PaintingInfo-currInfo-grid p {
+  margin: 5px 0;
+}
+
+.PaintingInfo-right h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.PaintingInfo-right p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+@media (max-width: 800px) {
+  .PaintingInfo {
+    flex-direction: column;
+    max-width: 90%;
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .PaintingInfo-right {
+    padding: 10px;
+  }
+
+  .PaintingInfo-left,
+  .PaintingInfo-right {
+    width: 100%;
+  }
+}

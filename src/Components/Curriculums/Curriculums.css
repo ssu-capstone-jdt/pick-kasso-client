@@ -7,3 +7,9 @@
     padding: 20px;
     width: 95%;
   }
+
+  @media (max-width: 760px) {
+    .info-container {
+        grid-template-columns: repeat(2, 1fr); /* Adjust for smaller screens */
+    }
+}

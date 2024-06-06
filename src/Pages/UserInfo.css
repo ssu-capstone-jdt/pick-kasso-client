@@ -2,13 +2,81 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    margin-top: 40px;
+    margin: 100px 300px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    margin-bottom: 50px;
+  }
+  @media (max-width: 1000px) {
+    .user-info-container {
+        min-width: 400px; /* 원하는 최소 너비로 설정 */
+        width: auto; /* 자동 너비 설정 */
+    }
+}
+
+
+  .user-info-area {
+    width: 80%;
+    margin: 40px;
+    /* background-color: aqua; */
+  }
+
+  .user-info-area h1 {
+    font-size: 18px;
+  }
+
+  .user-info-area hr {
+    border: 0;
+    height: 1px;
+    background-color: #9D9D9D;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .user-info-image {
+    width: 100%;
+    display: flex;
+    margin-bottom: 40px;
+  }
+
+  .user-info-image h2 {
+    font-size: 17px;
+  }
+
+  .user-info-nickname {
+    width: 100%;
+    display: inline;
+    margin-bottom: 40px;
+  }
+  .user-info-nickname input {
+    width: 100%;
+    height: 32px;
+    font-size: 15px;
+    border-radius: 0;
+    border: 0.1px solid #CCCCCC;
+    background-color: #F8F8F8;
+    pointer-events: none;
+    padding: 0 10px;
+    color: #9D9D9D;
+  }
+
+  .user-info-nickname h2 {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .user-info-image img {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    pointer-events: none;
+    margin: 0 auto;
   }
   
+  
   .user-profile-image {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     margin-bottom: 20px;
   }
@@ -18,27 +86,45 @@
     font-weight: bold;
     margin-bottom: 20px;
   }
-  
-  .logout-button, .withdrawal-button {
+
+  .logout-button {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 1px;
+    margin: 0;
+    color: #9D9D9D;
+    margin-top: 20px;
+    margin-bottom: 180px;
+  }
+  .withdrawal-button-area {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+  }
+  .withdrawal-button, .back-button {
     padding: 10px 20px;
     font-size: 16px;
     color: white;
-    background-color: blue;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
     margin-bottom: 10px;
+    background-color: #E41B51;
+    width: 50%;
+  }
+
+  .back-button {
+    background-color: #F8F8F8;
+    border: 0.1px solid #CCCCCC;
+    color: #707070;
+  }
+
+  .loading-screen {
+    width: 100%;
+    height: 100vh;
+    background-color: #fff; /* 원하는 배경색으로 설정 */
   }
   
-  .withdrawal-button {
-    background-color: red;
-  }
-  
-  .logout-button:hover {
-    background-color: darkblue;
-  }
-  
-  .withdrawal-button:hover {
-    background-color: darkred;
-  }
   

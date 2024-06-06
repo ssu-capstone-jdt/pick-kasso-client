@@ -6,7 +6,7 @@
     background-color: #343A40; 
     color: white;
     font-size: 14px;
-    z-index: 9999;
+    z-index: 11;
 }
 .footer-center {
     display: flex;

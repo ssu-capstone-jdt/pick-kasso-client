@@ -13,6 +13,16 @@
   padding: 20px;
   width: 80%;
 }
+@media (max-width: 900px) {
+  .curriculum-container {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 740px) {
+  .curriculum-container-mp {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 .curriculum-item {
   border-radius: 8px;

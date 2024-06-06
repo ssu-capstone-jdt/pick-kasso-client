@@ -10,7 +10,7 @@ import OAuthCallback from './Components/OAuthCallback';
 import UserInfo from './Pages/UserInfo';
 import CurriculumInfo from './Pages/CurriculumInfo';
 import LocalCurr from './Pages/LocalCurr';
-import PaintinginfoInfo from './Pages/PaintinginfoInfo';
+import PaintingInfo from './Pages/PaintingInfo';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,7 +35,7 @@ function App() {
           <Route path="/auth" element={<OAuthCallback setUser={setUser} />} />
           <Route path='/user' element={<UserInfo />}/>
           <Route path='/curriculuminfo/:id' element={<CurriculumInfo />} />
-          <Route path='/paintinginfo/:id' element={<PaintinginfoInfo />} />
+          <Route path='/paintinginfo' element={<PaintingInfo />} />
         </Routes>
         <Footer />
       </BrowserRouter>

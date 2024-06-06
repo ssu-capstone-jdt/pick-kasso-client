@@ -12,9 +12,9 @@ import curriculums_8 from '../Components/Assets/curriculums_8.jpg';
 import curriculums_9 from '../Components/Assets/curriculums_9.jpg';
 import curriculums_10 from '../Components/Assets/curriculums_10.jpg';
 import FileUploadButton from '../Components/FileUploadButton/FileUploadButton';
-import play_ICON from '../Components/Assets/play_ICON.png'
+import play_ICON from '../Components/Assets/play_ICON.png';
 import done_ICON from '../Components/Assets/done_ICON.png';
-import './CurriculumInfo.css'
+import './CurriculumInfo.css';
 
 const CurriculumInfo = () => {
   const { id } = useParams();
@@ -65,14 +65,28 @@ const CurriculumInfo = () => {
     }
   }, []);
 
+  const handleUploadSuccess = (roundId) => {
+    setCurriculum(prevCurriculum => {
+      const updatedRounds = prevCurriculum.download_round_response.map(round => {
+        if (round.id === roundId) {
+          return { ...round, is_upload_successful: "True" };
+        }
+        return round;
+      });
+      return { ...prevCurriculum, download_round_response: updatedRounds };
+    });
+  };
+
   if (!curriculum) {
     return <div>Loading...</div>;
   }
+  
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   };
+
   const explanations = curriculum.curriculum_response.curriculum_explanation
     .split('.')
     .filter(sentence => sentence.trim().length > 0);
@@ -94,7 +108,7 @@ const CurriculumInfo = () => {
         ))}
       </div>
       <div className="rounds">
-      {(curriculum.download_round_response || []).map((round, index) => (
+        {(curriculum.download_round_response || []).map((round, index) => (
           <div key={index} className="round">
             <h3>{round.order}</h3>
             <p>{formatTime(round.time)}</p>
@@ -118,6 +132,7 @@ const CurriculumInfo = () => {
               id={activeButtonIndex === index ? 'invoice_no_2' : 'invoice_no_3'} 
               roundId={round.id} 
               disabled={!(activeButtonIndex === index)}
+              onUploadSuccess={() => handleUploadSuccess(round.id)}
             />
             {!isChromeRuntimeAvailable && (
               <p style={{ color: 'red' }}>

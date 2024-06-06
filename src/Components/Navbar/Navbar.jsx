@@ -51,10 +51,10 @@ const Navbar = ({ user, setUser }) => {
                         <img src={logo_icon} alt="Logo Icon" />
                     </div>
                 </li>
-                <li onClick={() => { setMenu("home") }}><Link to='/home'>홈</Link>{menu === "home" ? <hr /> : <></>}</li>
-                <li onClick={() => { setMenu("post") }}><Link to='/post'>포스트</Link>{menu === "post" ? <hr /> : <></>}</li>
-                <li onClick={() => { setMenu("curriculum") }}><Link to='/curriculum'>커리큘럼</Link>{menu === "curriculum" ? <hr /> : <></>}</li>
-                <li onClick={() => { setMenu("mypage") }}><Link to='/mypage'>마이페이지</Link>{menu === "mypage" ? <hr /> : <></>}</li>
+                <li onClick={() => { setMenu("home") }} style={{ whiteSpace: 'nowrap' }}><Link to='/home'>홈</Link>{menu === "home" ? <hr /> : <></>}</li>
+                <li onClick={() => { setMenu("post") }} style={{ whiteSpace: 'nowrap' }}><Link to='/post'>포스트</Link>{menu === "post" ? <hr /> : <></>}</li>
+                <li onClick={() => { setMenu("curriculum") }} style={{ whiteSpace: 'nowrap' }}><Link to='/curriculum'>커리큘럼</Link>{menu === "curriculum" ? <hr /> : <></>}</li>
+                <li onClick={() => { setMenu("mypage") }} style={{ whiteSpace: 'nowrap' }}><Link to='/mypage'>마이페이지</Link>{menu === "mypage" ? <hr /> : <></>}</li>
                 <div className="nav-login">
                     {isLoggedIn ? (
                         <div className="user-image-container" onClick={() => { setMenu("user") }}>

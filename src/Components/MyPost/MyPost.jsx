@@ -42,7 +42,7 @@ function MyPost() {
       .then(() => {
         setPaintings(prev => prev.filter(painting => painting.id !== paintingId));
         setDropdownVisible(null);
-        alert('Painting deleted successfully');
+        alert('삭제 완료');
       })
       .catch(error => {
         console.error('Failed to delete painting:', error);
@@ -50,16 +50,26 @@ function MyPost() {
       });
   };
 
-  const handleClick = (paintingId) => {
-    navigate(`/paintinginfo/${paintingId}`);
+  const handleClick = (painting) => {
+    navigate(`/paintinginfo`, {
+      state: {
+        curriculum_id: painting.curriculum_id,
+        member_nickname: painting.member_nickname,
+        painting_link: painting.painting_link,
+        painting_title: painting.painting_title,
+        curriculum_title: painting.curriculum_title,
+        curriculum_info: painting.curriculum_info,
+      }
+    });
+    window.scrollTo(0, 0);
   };
 
   return (
     <div className="painting-container">
       {paintings.map((painting, index) => (
         <div key={index} className="painting-item">
-          <div onClick={() => handleClick(painting.id)}>
-            <img className='painting-image' painting-image src={painting.painting_link} alt={painting.painting_title} />
+          <div onClick={() => handleClick(painting)}>
+            <img className='painting-image' src={painting.painting_link} alt={painting.painting_title} />
           </div>
           <div className="more-icon-container" onClick={() => handleMoreClick(index)}>
             <img src={moreIcon} alt="More" className="more-icon" />

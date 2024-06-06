@@ -3,6 +3,16 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
+@media (max-width: 860px) {
+  .painting-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .painting-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
 .painting-item {
   background-color: #f9f9f9;

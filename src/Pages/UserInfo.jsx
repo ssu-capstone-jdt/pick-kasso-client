@@ -8,6 +8,7 @@ const UserInfo = () => {
   const [user, setUser] = useState(null);
   const [deletePaintingState, setDeletePaintingState] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
 
   useEffect(() => {
     const storedUser = JSON.parse(sessionStorage.getItem('user'));
@@ -30,10 +31,11 @@ const UserInfo = () => {
   }, []);
 
   const handleLogout = () => {
+    setIsLoading(true); // 로딩 상태 활성화
+    window.location.href = '/home';
     sessionStorage.removeItem('user');
     Cookies.remove('access_token');
     setUser(null);
-    window.location.reload();
   };
 
   const handleCheckboxChange = () => {
@@ -77,14 +79,29 @@ const UserInfo = () => {
     }
   };
 
+  if (isLoading) {
+    return <div className="loading-screen"></div>; // 로딩 상태 시 빈 화면 표시
+  }
+
   return (
     <div className="user-info-container">
       {user ? (
-        <>
+        <div className='user-info-area'>
+        <h1>유저 프로필</h1>
+        <hr/>
+        <div className="user-info-image">
+          <h2>사진</h2>
           <img src={user.profile || defaultUserImage} alt="User" className="user-profile-image" />
-          <h2 className="user-nickname">{user.nickname}</h2>
+        </div>
+        <div className="user-info-nickname">
+          <h2>닉네임</h2>
+          <input value={user.nickname} readOnly></input>
+        </div>
           <button onClick={handleLogout} className="logout-button">로그아웃</button>
-          <button onClick={() => setIsModalOpen(true)} className="withdrawal-button">탈퇴</button>
+          <div className="withdrawal-button-area">
+          <button className="back-button" onClick={() => window.history.back()}>이전</button>
+            <button onClick={() => setIsModalOpen(true)} className="withdrawal-button">탈퇴</button>
+          </div>
           {isModalOpen && (
             <div className="modal">
               <div className="modal-content">
@@ -96,15 +113,15 @@ const UserInfo = () => {
                     checked={deletePaintingState}
                     onChange={handleCheckboxChange}
                   />
-                  &nbsp;포스트한 그림도 같이 삭제하기
+                  &nbsp;포스트한 모든 그림을 삭제합니다
                 </label>
                 <button className="open-modal-button" onClick={handleWithdrawal}>확인</button>
               </div>
             </div>
           )}
-        </>
+        </div>
       ) : (
-        <p>Loading...</p>
+        <p>로그아웃 하는 중...</p>
       )}
     </div>
   );

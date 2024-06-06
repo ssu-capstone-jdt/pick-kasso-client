@@ -3,8 +3,7 @@ import api from '../api'; // Make sure to adjust the import path to your actual 
 import upload_ICON from '../Assets/upload_ICON.png';
 import './FileUploadButton.css';
 
-
-const FileUploadButton = ({ roundId, id, disabled }) => {
+const FileUploadButton = ({ roundId, id, disabled, onUploadSuccess }) => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [paintingTitle, setPaintingTitle] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,7 +23,7 @@ const FileUploadButton = ({ roundId, id, disabled }) => {
 
     const handleFileUpload = () => {
         if (!selectedFile) {
-            alert('Please select a file first.');
+            alert('파일을 선택해 주세요.');
             return;
         }
 
@@ -41,9 +40,9 @@ const FileUploadButton = ({ roundId, id, disabled }) => {
         })
         .then(response => {
             console.log('File uploaded successfully:', response.data);
-            alert('업로드 완료!');
+            alert('업로드 완료');
             setIsModalOpen(false); 
-            // window.location.reload();
+            onUploadSuccess(roundId);
         })
         .catch(error => {
             console.error('Error uploading file:', error);

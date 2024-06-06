@@ -18,8 +18,17 @@ const Posts = () => {
       });
   }, []);
 
-  const handleItemClick = (paintingId) => {
-    navigate(`/paintinginfo/${paintingId}`);
+  const handleItemClick = (painting) => {
+    navigate(`/paintinginfo`, {
+      state: {
+        curriculum_id: painting.curriculum_id,
+        member_nickname: painting.member_nickname,
+        painting_link: painting.painting_link,
+        painting_title: painting.painting_title,
+        curriculum_title: painting.curriculum_title,
+        curriculum_info: painting.curriculum_info,
+      }
+    });
   };
 
   return (
@@ -27,13 +36,13 @@ const Posts = () => {
       {paintings.map((item, i) => (
         <Item
           key={i}
-          image={item.painting_profile}
+          id={item.curriculum_id}
+          image={item.painting_link}
           nickname={item.member_nickname}
           title={item.painting_title}
-          link={item.painting_link}
           curriculum_title={item.curriculum_title}
           curriculum_info={item.curriculum_info}
-          handleClick={() => handleItemClick(item.painting_title)}
+          handleClick={() => handleItemClick(item)}
         />
       ))}
     </div>
