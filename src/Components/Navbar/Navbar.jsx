@@ -27,13 +27,13 @@ const Navbar = ({ user, setUser }) => {
                         setIsLoggedIn(true);
                     } else {
                         // If success is false, initiate OAuth login
-                        handleLogin();
+                        // handleLogin();
                     }
                 })
                 .catch(error => {
                     console.error("Error fetching user data: ", error);
                     // On error, also initiate OAuth login
-                    handleLogin();
+                    // handleLogin();
                 });
         }
     }, [setUser]);

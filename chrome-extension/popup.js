@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   const timerButton = document.getElementById('timerButton');
+  const timerDiv = document.querySelector('body > div');
 
   chrome.runtime.sendMessage({ action: 'getRemainingTime' }, (response) => {
     if (response.remainingTime > 0) {
@@ -9,12 +10,18 @@ document.addEventListener('DOMContentLoaded', function() {
       chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         chrome.scripting.executeScript({
           target: { tabId: tabs[0].id },
-          func: () => document.getElementById('invoice_no_1')?.value
+          func: () => {
+            const invoiceElement = document.getElementById('invoice_no_1');
+            return {
+              value: invoiceElement?.value,
+              text: invoiceElement?.getAttribute('data-explanation')
+            };
+          }
         }, (results) => {
           if (results && results[0] && results[0].result) {
-            const value = results[0].result;
-            const timeFormat = formatTime(parseInt(value, 10));
-            timerButton.textContent = timeFormat;
+            const { value, text } = results[0].result;
+            timerDiv.textContent = text;
+            timerButton.textContent = formatTime(parseInt(value, 10));
             timerButton.disabled = false;
             timerButton.addEventListener('click', () => startTimer(parseInt(value, 10)));
           }

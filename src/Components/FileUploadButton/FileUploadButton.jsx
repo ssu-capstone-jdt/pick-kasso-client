@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import api from '../api'; // Make sure to adjust the import path to your actual API module
+import upload_ICON from '../Assets/upload_ICON.png';
 import './FileUploadButton.css';
+
 
 const FileUploadButton = ({ roundId, id, disabled }) => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -40,8 +42,8 @@ const FileUploadButton = ({ roundId, id, disabled }) => {
         .then(response => {
             console.log('File uploaded successfully:', response.data);
             alert('업로드 완료!');
-            setIsModalOpen(false); // Close modal on success
-            window.location.reload();
+            setIsModalOpen(false); 
+            // window.location.reload();
         })
         .catch(error => {
             console.error('Error uploading file:', error);
@@ -52,12 +54,12 @@ const FileUploadButton = ({ roundId, id, disabled }) => {
     return (
         <div>
             <button 
-                className="open-modal-button" 
+                className="open-modal-button-up" 
                 id={id}
                 disabled={disabled}
                 onClick={() => setIsModalOpen(true)}
             >
-                Upload Image
+                <img src={upload_ICON} alt="Upload Icon" className="upload_ICON" />
             </button>
             {isModalOpen && (
                 <div className="modal">

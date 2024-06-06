@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import api from '../api'; // 수정된 api 인스턴스 사용
-import InfoComponent from '../InfoComponent';
+import api from '../api';
 import './Curriculums.css';
+import { useNavigate } from 'react-router-dom';
+import curriculums_1 from '../Assets/curriculums_1.jpg';
+import curriculums_2 from '../Assets/curriculums_2.jpg';
+import curriculums_3 from '../Assets/curriculums_3.jpg';
+import curriculums_4 from '../Assets/curriculums_4.jpg';
+import curriculums_5 from '../Assets/curriculums_5.jpg';
+import curriculums_6 from '../Assets/curriculums_6.jpg';
+import curriculums_7 from '../Assets/curriculums_7.jpg';
+import curriculums_8 from '../Assets/curriculums_8.jpg';
+import curriculums_9 from '../Assets/curriculums_9.jpg';
+import curriculums_10 from '../Assets/curriculums_10.jpg';
 
 const Curriculums = ({ activeButton }) => {
-  const [curriculums, setCurriculums] = useState([]);
+  const [allCurriculums, setAllCurriculums] = useState([]);
+  const [filteredCurriculums, setFilteredCurriculums] = useState([]);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     api.get('/curriculums/all')
       .then(response => {
-        const data = response.data.data;
+        const data = response.data.data.filter(cur => cur.state === 'Pending');
+        setAllCurriculums(data);
         filterCurriculums(data, activeButton);
         setError(false);
       })
@@ -19,6 +32,27 @@ const Curriculums = ({ activeButton }) => {
         setError(true);
       });
   }, [activeButton]);
+
+  useEffect(() => {
+    filterCurriculums(allCurriculums, activeButton);
+  }, [activeButton, allCurriculums]);
+
+  const imageMap = {
+    1: curriculums_1,
+    2: curriculums_2,
+    3: curriculums_3,
+    4: curriculums_4,
+    5: curriculums_5,
+    6: curriculums_6,
+    7: curriculums_7,
+    8: curriculums_8,
+    9: curriculums_9,
+    10: curriculums_10,
+  };
+
+  const getImageById = (id) => {
+    return imageMap[id] || curriculums_1;
+  };
 
   const filterCurriculums = (data, buttonNumber) => {
     let filteredData;
@@ -38,23 +72,60 @@ const Curriculums = ({ activeButton }) => {
       default:
         filteredData = data;
     }
-    setCurriculums(filteredData);
+    setFilteredCurriculums(filteredData);
+  };
+
+  const translateDifficulty = (difficulty) => {
+    switch(difficulty) {
+      case 'Easy':
+        return '초급';
+      case 'Normal':
+        return '중급';
+      case 'Hard':
+        return '상급';
+      default:
+        return difficulty;
+    }
+  };
+
+  const translateState = (state) => {
+    switch(state) {
+      case 'Completed':
+        return '완료';
+      case 'InProgress':
+        return '진행중';
+      case 'Pending':
+        return '진행 정보';
+      default:
+        return state;
+    }
+  };
+
+  const handleClick = (id) => {
+    navigate(`/curriculum/${id}`);
   };
 
   return (
-    <div>
+    <div className='info-container'>
       {error && <p>Error loading data!</p>}
-      {curriculums.map((cur, index) => (
-        <InfoComponent
-          key={index}
-          id={cur.curriculum_response.curriculum_id}
-          title={cur.curriculum_response.curriculum_title}
-          info={cur.curriculum_response.curriculum_info}
-          background={cur.curriculum_response.curriculum_painting}
-          roundCount={cur.curriculum_response.curriculum_round_count}
-          difficulty={cur.curriculum_response.curriculum_difficulty}
-          state={cur.state}
-        />
+      {filteredCurriculums.map((curriculum, index) => (
+        <div key={index} className="curriculum-item" onClick={() => handleClick(curriculum.curriculum_response.curriculum_id)}>
+          <img
+            src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
+            alt={curriculum.curriculum_response.curriculum_title}
+          />
+          <div className="curr-tags">
+            <div className="curr-tag-l">
+              <p>{translateState(curriculum.state)}</p>
+            </div>
+            <div className="curr-tag-r">
+              <p>{translateDifficulty(curriculum.curriculum_response.curriculum_difficulty)}</p>
+              <p>{curriculum.curriculum_response.curriculum_round_count}회차</p>
+            </div>
+          </div>
+          <h3>{curriculum.curriculum_response.curriculum_title}</h3>
+          <p>{curriculum.curriculum_response.curriculum_info}</p>
+        </div>
       ))}
     </div>
   );

@@ -1,22 +1,60 @@
-.item{
+.item-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+  }
+  
+  .item-image {
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit:cover;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.48);
+    color: white;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    overflow: hidden;
-    transition: transform 0.3s; 
+    opacity: 0;
     border-radius: 8px;
-    /* background-color: #ff0000;  */
-}
-.item-price-new{
-    font-size: 18px;
-}
-.item-price-old{
-    font-size: 18px;
-}
-.item img {
-    width: 225px;
-    height: 225px;
-    object-fit: cover;
-    object-position: center;
-}
+    cursor: pointer;
+  }
+  
+  .item-container:hover .item-overlay {
+    opacity: 1;
+  }
+  
+  .item-title {
+    margin: 0;
+    padding-top: 10px;
+    align-self:self-start;
+    font-size: 15px;
+    padding-left: 10px;
+  }
+  
+  .item-info {
+    margin: 0;
+    align-self:self-start;
+    font-size: 13px;
+    padding-left: 10px;
+    padding-top: 1px;
+  }
+  
+  .item-nickname {
+    margin-top: auto;
+    align-self: flex-end;
+    padding-right: 10px;
+    padding-bottom: 8px;
+    font-size: 13px;
+  }

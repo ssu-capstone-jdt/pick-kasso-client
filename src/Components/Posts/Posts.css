@@ -1,15 +1,7 @@
-.posts{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin: auto;
-    overflow: hidden;
-}
 .post-grid{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px; 
+    grid-gap: 10px; 
     width: 100%;
 }
 @media (max-width: 1300px) {
@@ -23,13 +15,13 @@
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .post-grid {
         grid-template-columns: repeat(2, 1fr); /* Adjust for smaller screens */
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 750px) {
     .post-grid {
         grid-template-columns: 1fr; /* Single column layout for mobile */
     }

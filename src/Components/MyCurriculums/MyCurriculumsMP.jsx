@@ -26,7 +26,8 @@ const MyCurriculumsMP = () => {
         const fetchedCurriculums = response.data.data.map(item => ({
           curriculum_response: item.curriculum_response,
           round_response: item.round_response,
-          user_round_response: item.user_round_response
+          user_round_response: item.user_round_response,
+          state: item.state // Ensure the state property is included
         }));
         setCurriculums(fetchedCurriculums);
       })
@@ -84,8 +85,32 @@ const MyCurriculumsMP = () => {
     navigate(`/curriculuminfo/${id}`);
   };
 
+  const translateDifficulty = (difficulty) => {
+    switch(difficulty) {
+      case 'Easy':
+        return '초급';
+      case 'Normal':
+        return '중급';
+      case 'Hard':
+        return '상급';
+      default:
+        return difficulty;
+    }
+  };
+
+  const translateState = (state) => {
+    switch(state) {
+      case 'Completed':
+        return '완료';
+      case 'InProgress':
+        return '진행중';
+      default:
+        return state;
+    }
+  };
+
   return (
-    <div className="curriculum-container">
+    <div className="curriculum-container-mp">
       {curriculums.map((curriculum, index) => (
         <div key={index} className="curriculum-item">
           <div onClick={() => handleClick(curriculum.curriculum_response.curriculum_id)}>
@@ -93,11 +118,17 @@ const MyCurriculumsMP = () => {
               src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
               alt={curriculum.curriculum_response.curriculum_title}
             />
+            <div className="curr-tags">
+              <div className="curr-tag-l">
+                <p>{translateState(curriculum.state)}</p>
+              </div>
+              <div className="curr-tag-r">
+                <p>{translateDifficulty(curriculum.curriculum_response.curriculum_difficulty)}</p>
+                <p>{curriculum.curriculum_response.curriculum_round_count}회차</p>
+              </div>
+            </div>
             <h3>{curriculum.curriculum_response.curriculum_title}</h3>
             <p>{curriculum.curriculum_response.curriculum_info}</p>
-            <p>Rounds: {curriculum.curriculum_response.curriculum_round_count}</p>
-            <p>Difficulty: {curriculum.curriculum_response.curriculum_difficulty}</p>
-            <p>Status: {curriculum.state}</p>
           </div>
           <div className="more-icon-container" onClick={() => handleMoreClick(curriculum.curriculum_response.curriculum_id)}>
             <img src={more_ICON} alt="more icon" />

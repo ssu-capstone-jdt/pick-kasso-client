@@ -59,7 +59,7 @@ function MyPost() {
       {paintings.map((painting, index) => (
         <div key={index} className="painting-item">
           <div onClick={() => handleClick(painting.id)}>
-            <img src={painting.painting_link} alt={painting.painting_title} />
+            <img className='painting-image' painting-image src={painting.painting_link} alt={painting.painting_title} />
           </div>
           <div className="more-icon-container" onClick={() => handleMoreClick(index)}>
             <img src={moreIcon} alt="More" className="more-icon" />

@@ -16,11 +16,18 @@ import curriculums_10 from '../Assets/curriculums_10.jpg';
 const MyCurriculums = () => {
   const [curriculums, setCurriculums] = useState([]);
   const navigate = useNavigate();
+  const [error] = useState(false);
 
   useEffect(() => {
     api.get('/curriculums')
       .then(response => {
-        setCurriculums(response.data.data);
+        const fetchedCurriculums = response.data.data.map(item => ({
+          curriculum_response: item.curriculum_response,
+          round_response: item.round_response,
+          user_round_response: item.user_round_response,
+          state: item.state // Ensure the state property is included
+        }));
+        setCurriculums(fetchedCurriculums);
       })
       .catch(error => {
         console.error('Failed to fetch curriculums:', error);
@@ -48,9 +55,15 @@ const MyCurriculums = () => {
     navigate(`/curriculuminfo/${id}`);
   };
 
+  // Filter to get InProgress first, then Completed, and limit to 3 items
+  const filteredCurriculums = curriculums
+    .sort((a, b) => (a.state === 'InProgress' ? -1 : 1)) // Sort to prioritize InProgress
+    .slice(0, 3); // Limit to first 3 items
+
   return (
     <div className="curriculum-container">
-      {curriculums.map((curriculum, index) => (
+      {error && <p>로그인 후 이용 가능합니다!</p>}
+      {filteredCurriculums.map((curriculum, index) => (
         <div key={index} className="curriculum-item">
           <div onClick={() => handleClick(curriculum.curriculum_response.curriculum_id)}>
             <img

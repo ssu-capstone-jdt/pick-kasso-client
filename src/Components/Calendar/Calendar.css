@@ -3,6 +3,7 @@
   font-family: 'Arial', sans-serif;
   /* max-width: 960px; */
   margin: 20px auto;
+  align-items: center;
 }
 .check-icon {
   width: 40px;
@@ -13,35 +14,24 @@
 /* Header Section */
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
 }
 
 .header .col {
   display: flex;
-  align-items: center;
-  justify-content: space-between; /* Ensures the arrows and date are spread out */
-  width: 100%;
-  margin: 10px;
 }
-.text year {
-  padding: 10px;
+.text-year {
+  padding-right: 10px;
 }
 
 .col-start {
-  justify-content: flex-start;
-  flex: 1;
-}
-
-.col-end {
-  justify-content: flex-end;
-  flex: 1;
-  padding-right: 50px;
+  justify-content: space-between;
+  width: 50%;
+  align-items: center;
 }
 
 .header span.text {
-  font-size: 20px;
+  font-size: 23px;
   font-weight: bold;
 }
 
@@ -50,16 +40,16 @@
 }
 
 .header img {
-  /* cursor: pointer; */
+  cursor: pointer;
   width: 25px;
   height: 25px;
+  opacity: 50%;
 }
 
 
 .days {
   display: flex;
   padding: 5px 0;
-  /* margin: 10px 300px;/ */
 }
 
 .days .col {
@@ -70,7 +60,6 @@
   margin: 10px 30px;
 }
 
-/* Cells of the Days */
 .body .row {
   display: flex;
 }
@@ -83,6 +72,7 @@
   align-items: center;
   /* cursor: pointer; */
   margin: 10px;
+  color: #0000004f;
 }
 
 .body .col:last-child {
@@ -100,6 +90,7 @@
 .cell.selected {
   background-color: #ffbcbc4c;
   border-radius: 20px;
+  color: black;
 }
 
 .cell.not-valid {
@@ -108,4 +99,5 @@
 
 .cell.valid {
   background-color: #fff;
+  color: black;
 }

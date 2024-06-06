@@ -1,15 +1,15 @@
 import React from 'react';
 import './Item.css';
 
-const Item = ({ image, nickname, title, link, curriculum_title, curriculum_info }) => {
+const Item = ({ image, nickname, title, curriculum_title, curriculum_info, handleClick }) => {
   return (
-    <div className='item'>
-      <img src={image} alt={title} />
-      <h3>{title}</h3>
-      <p>{nickname}</p>
-      <p>{curriculum_title}</p>
-      <p>{curriculum_info}</p>
-      <a href={link} target="_blank" rel="noopener noreferrer">View Painting</a>
+    <div className="item-container" onClick={handleClick}>
+      <img src={image} alt={title} className="item-image" />
+      <div className="item-overlay">
+        <h3 className="item-title">{curriculum_title}</h3>
+        <p className="item-info">{curriculum_info}</p>
+        <p className="item-nickname">{nickname}</p>
+      </div>
     </div>
   );
 }

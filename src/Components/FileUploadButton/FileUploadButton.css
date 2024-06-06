@@ -1,5 +1,6 @@
 /* Add this CSS to your existing stylesheet */
 
+
 .modal {
     display: block;
     position: fixed;
@@ -79,4 +80,23 @@ input[type="file"]:focus {
 @keyframes slideIn {
     from { transform: translateY(-30px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
+}
+.upload_ICON {
+    width: 20px; 
+    height: 20px; 
+    cursor: pointer;
+    background: none;
+}
+.open-modal-button-up {
+    width: 30px; 
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: none;
+}
+.open-modal-button-up :hover{
+    transform: scale(1.1);
 }

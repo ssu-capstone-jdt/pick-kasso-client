@@ -4,12 +4,10 @@
     width: 100%;
     padding: 20px 0px;
     box-sizing: border-box; 
-    /* background-color: #ffc0c0; */
 }
 .header {
     display: flex;
     flex-direction: column;
-    /* background-color: #F6F6F6; */
     margin: 70px 0;
     width: 100%; 
     padding: 0 20px;
@@ -22,7 +20,6 @@
     color: #333; 
     text-align: left;
     width: 100%;
-    /* background-color: aqua; */
     margin-left: 0;
     padding-left: 0;
 }
@@ -55,34 +52,32 @@
 .nav-diff {
     margin-left: 20px;
     display: flex;
-    gap: 50px;  /* Space between each button */
-    margin-bottom: 20px;  /* Space below the button group */
+    gap: 50px; 
+    margin-bottom: 20px; 
     width: 100%;
     margin-top: 0px;
-    /* background-color: aqua; */
 }
 
 .nav-diff button {
     margin-top: 0px;
     margin-bottom: 10px;
-    background-color: #F6F6F6;  /* Light pink background */
-    color: #333;  /* Dark text for readability */
+    background-color: #F6F6F6;  
+    color: #333; 
     border: none;
-    border-radius: 20px;  /* Rounded corners */
-    padding: 10px 35px;  /* Padding inside the button */
-    font-size: 18px;  /* Text size inside the button */
+    border-radius: 20px;  
+    padding: 10px 35px;  
+    font-size: 18px; 
     font-weight: bold;
-    cursor: pointer;  /* Pointer cursor on hover */
+    cursor: pointer;  
 }
 .nav-diff button:hover {
-    background-color: #FBCDD4;  /* Darker pink on hover */
-    color: white;  /* White text on hover */
+    background-color: #FBCDD4; 
+    color: white;  
 }
 
-/* Ensure the curriculum content remains centered and does not stretch too wide */
 @media (min-width: 1024px) {
     .curriculum {
-        max-width: 960px;  /* Adjust this to suit your layout needs */
-        margin: auto;  /* Centers the entire curriculum component */
+        max-width: 960px;
+        margin: auto;  
     }
 }

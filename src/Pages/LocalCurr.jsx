@@ -59,6 +59,12 @@ const LocalCurr = () => {
       });
   };
 
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  };
+
   if (error) {
     return <p>Error loading data!</p>;
   }
@@ -67,22 +73,31 @@ const LocalCurr = () => {
     return <p>Loading...</p>;
   }
 
+  const explanations = curriculum.curriculum_response.curriculum_explanation
+    .split('.')
+    .filter(sentence => sentence.trim().length > 0);
+
   return (
     <div className="local-curriculum">
-      <h1>{curriculum.curriculum_response.curriculum_title}</h1>
-      <p>{curriculum.curriculum_response.curriculum_info}</p>
-      <img src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
-           alt={curriculum.curriculum_response.curriculum_title}   
+      <img 
+        className='local-curriculum-img' 
+        src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
+        alt={curriculum.curriculum_response.curriculum_title}   
       />
-      <p>Number of Rounds: {curriculum.curriculum_response.curriculum_round_count}</p>
-      <p>Difficulty: {curriculum.curriculum_response.curriculum_difficulty}</p>
-      <p>Explanation: {curriculum.curriculum_response.curriculum_explanation}</p>
+      <div className="local-curr-h1">
+        <h1>{curriculum.curriculum_response.curriculum_title}</h1>
+        <p>{curriculum.curriculum_response.curriculum_info}</p>
+      </div>
+      <div className="local-curr-info">
+        {explanations.map((explanation, index) => (
+          <p key={index}>{explanation.trim()}.</p>
+        ))}
+      </div>
       <div className="rounds">
         {(curriculum.download_round_response || []).map((round, index) => (
           <div key={index} className="round">
-            <h3>Round {round.order}</h3>
-            <p>Time: {round.time} seconds</p>
-            <p>Explanation: {round.explanation}</p>
+            <h3>{round.order}</h3>
+            <p>{formatTime(round.time)}</p>
           </div>
         ))}
       </div>

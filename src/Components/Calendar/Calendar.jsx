@@ -2,7 +2,7 @@ import './Calendar.css'
 import React, { useState, useEffect } from 'react';
 import arrow_l from '../Assets/arrow_bk@2x.png'
 import arrow_r from '../Assets/arrow_bj@2x.png'
-import checkIcon from '../Assets/logo-ICON@2x.png';
+import checkIcon from '../Assets/done_ICON.png';
 import api from '../api';
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, startOfWeek, endOfWeek, isSameMonth, isSameDay, addDays, parseISO } from 'date-fns';
 
@@ -10,16 +10,14 @@ const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
     return (
         <div className="header row">
             <div className="col col-start">
+                <img src={arrow_l} alt="" onClick={prevMonth} />
                 <span className="text">
                     <span className="text-year">
                         {format(currentMonth, 'yyyy')}년 
                     </span>
                     {format(currentMonth, 'M')}월
                 </span>
-            </div>
-            <div className="col col-end">
-            <img src={arrow_l} alt="" onClick={prevMonth} />
-            <img src={arrow_r} alt="" onClick={nextMonth} />
+                <img src={arrow_r} alt="" onClick={nextMonth} />
             </div>
         </div>
     );

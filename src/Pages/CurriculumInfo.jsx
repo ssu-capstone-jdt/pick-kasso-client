@@ -12,6 +12,9 @@ import curriculums_8 from '../Components/Assets/curriculums_8.jpg';
 import curriculums_9 from '../Components/Assets/curriculums_9.jpg';
 import curriculums_10 from '../Components/Assets/curriculums_10.jpg';
 import FileUploadButton from '../Components/FileUploadButton/FileUploadButton';
+import play_ICON from '../Components/Assets/play_ICON.png'
+import done_ICON from '../Components/Assets/done_ICON.png';
+import './CurriculumInfo.css'
 
 const CurriculumInfo = () => {
   const { id } = useParams();
@@ -65,33 +68,54 @@ const CurriculumInfo = () => {
   if (!curriculum) {
     return <div>Loading...</div>;
   }
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  };
+  const explanations = curriculum.curriculum_response.curriculum_explanation
+    .split('.')
+    .filter(sentence => sentence.trim().length > 0);
 
   return (
     <div className="local-curriculum">
-      <h1>{curriculum.curriculum_response.curriculum_title}</h1>
-      <p>{curriculum.curriculum_response.curriculum_info}</p>
-      <img src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
-           alt={curriculum.curriculum_response.curriculum_title}   
+      <img 
+        className='local-curriculum-img' 
+        src={curriculum.curriculum_response.curriculum_painting || getImageById(curriculum.curriculum_response.curriculum_id)}
+        alt={curriculum.curriculum_response.curriculum_title}   
       />
-      <p>Number of Rounds: {curriculum.curriculum_response.curriculum_round_count}</p>
-      <p>Difficulty: {curriculum.curriculum_response.curriculum_difficulty}</p>
-      <p>Explanation: {curriculum.curriculum_response.curriculum_explanation}</p>
+      <div className="local-curr-h1">
+        <h1>{curriculum.curriculum_response.curriculum_title}</h1>
+        <p>{curriculum.curriculum_response.curriculum_info}</p>
+      </div>
+      <div className="local-curr-info">
+        {explanations.map((explanation, index) => (
+          <p key={index}>{explanation.trim()}.</p>
+        ))}
+      </div>
       <div className="rounds">
-        {curriculum.download_round_response.map((round, index) => (
+      {(curriculum.download_round_response || []).map((round, index) => (
           <div key={index} className="round">
-            <h3>Round {round.order}</h3>
-            <p>Time: {round.time} seconds</p>
-            <p>Explanation: {round.explanation}</p>
-            {round.is_upload_successful === "True" && <p>완료!</p>}
+            <h3>{round.order}</h3>
+            <p>{formatTime(round.time)}</p>
+            {round.is_upload_successful === "True" && (
+              <>
+                <div className="done-overlay">
+                  <img src={done_ICON} alt="Done Icon" className="done-icon" />
+                </div>
+              </>
+            )}
             <button 
               id={activeButtonIndex === index ? 'invoice_no_1' : 'invoice'}
               value={round.time} 
               onClick={() => handleButtonClick(index)} 
-              disabled={!isChromeRuntimeAvailable}>
-              Pick카소 타이머 사용
+              disabled={!isChromeRuntimeAvailable}
+              className="open-modal-button-up" 
+              data-explanation={round.explanation}>
+              <img src={play_ICON} alt="Upload Icon" className="upload_ICON" />
             </button>
             <FileUploadButton 
-              id={activeButtonIndex === index ? 'invoice_no_2' : ''} 
+              id={activeButtonIndex === index ? 'invoice_no_2' : 'invoice_no_3'} 
               roundId={round.id} 
               disabled={!(activeButtonIndex === index)}
             />

@@ -1,7 +1,6 @@
-.item{
+/* .item{
     width: 250px;
     overflow: hidden;
-    /* margin: 10px */
 }
 .item-price-new{
     font-size: 18px;
@@ -18,8 +17,6 @@
     object-fit: cover;
     object-position: center;
     border-radius: 10px;
-    /* flex-direction: row;
-    justify-content: space-between; */
 }
 @media (max-width: 600px) {
     .item {
@@ -30,4 +27,4 @@
     .item img {
         height: 200px;
     }
-}
+} */
