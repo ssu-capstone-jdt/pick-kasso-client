@@ -1,0 +1,53 @@
+{
+    "success": true,
+    "status": 200,
+    "data": {
+        "curriculum_response": {
+            "curriculum_id": 2,
+            "curriculum_title": "일러스트",
+            "curriculum_info": "디지털 일러스트 그리기",
+            "curriculum_explanation": "초보자도 쉽게 따라하는 일러스트 그리기",
+            "curriculum_painting": "https://jdt-bucket1.s3.ap-northeast-2.amazonaws.com/syarafina-idris-dCeWUxnIYaM-unsplash.jpg",
+            "curriculum_round_count": 5,
+            "curriculum_difficulty": "Normal"
+        },
+        "download_round_response": [
+            {
+                "order": 1,
+                "time": 300,
+                "explanation": "Procreate 사용해보기",
+                "is_upload_successful": "Null",
+                "id": 6
+            },
+            {
+                "order": 2,
+                "time": 600,
+                "explanation": "동물 데포르메",
+                "is_upload_successful": "Null",
+                "id": 7
+            },
+            {
+                "order": 3,
+                "time": 600,
+                "explanation": "다양한 표정 그리기",
+                "is_upload_successful": "Null",
+                "id": 8
+            },
+            {
+                "order": 4,
+                "time": 300,
+                "explanation": "스트리와 구성",
+                "is_upload_successful": "Null",
+                "id": 9
+            },
+            {
+                "order": 5,
+                "time": 300,
+                "explanation": "색채",
+                "is_upload_successful": "Null",
+                "id": 10
+            }
+        ]
+    },
+    "timestamp": "2024-06-07T13:35:28.406389"
+}

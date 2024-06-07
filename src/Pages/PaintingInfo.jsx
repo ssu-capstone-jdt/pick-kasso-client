@@ -29,7 +29,6 @@ const PaintingInfo = () => {
         </div>
         <h2>{painting_title}</h2>
         <p>유저: {member_nickname}</p>
-        <img></img>
       </div>
     </div>
   );

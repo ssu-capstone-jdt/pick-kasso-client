@@ -1,0 +1,60 @@
+{
+    "success": true,
+    "status": 200,
+    "data": {
+        "curriculum_response": {
+            "curriculum_id": 3,
+            "curriculum_title": "배경",
+            "curriculum_info": "배경드로잉",
+            "curriculum_explanation": "그려보아요",
+            "curriculum_painting": "https://jdt-bucket1.s3.ap-northeast-2.amazonaws.com/a7a9f991fadfea58164f73d2ab394c63.jpg",
+            "curriculum_round_count": 6,
+            "curriculum_difficulty": "Hard"
+        },
+        "download_round_response": [
+            {
+                "order": 1,
+                "time": 300,
+                "explanation": "박스 그리기",
+                "is_upload_successful": "Null",
+                "id": 11
+            },
+            {
+                "order": 2,
+                "time": 600,
+                "explanation": "여러 방향으로 물체 돌려보며 그리기",
+                "is_upload_successful": "Null",
+                "id": 12
+            },
+            {
+                "order": 3,
+                "time": 300,
+                "explanation": "투시에 맞게 정사각형 그리기",
+                "is_upload_successful": "Null",
+                "id": 13
+            },
+            {
+                "order": 4,
+                "time": 300,
+                "explanation": "원형을 바탕으로 사물 그리기",
+                "is_upload_successful": "Null",
+                "id": 14
+            },
+            {
+                "order": 5,
+                "time": 1800,
+                "explanation": "건물 그리기",
+                "is_upload_successful": "Null",
+                "id": 15
+            },
+            {
+                "order": 6,
+                "time": 1800,
+                "explanation": "내부 공간 그리기",
+                "is_upload_successful": "Null",
+                "id": 16
+            }
+        ]
+    },
+    "timestamp": "2024-06-07T13:35:44.39407"
+}

@@ -1,0 +1,53 @@
+{
+    "success": true,
+    "status": 200,
+    "data": {
+        "curriculum_response": {
+            "curriculum_id": 1,
+            "curriculum_title": "크로키",
+            "curriculum_info": "매일 5분 크로키",
+            "curriculum_explanation": "매일 5분 꾸준히 그림을 그려 다양한 물체의 형태와 선의 흐름을 이해합니다",
+            "curriculum_painting": "https://jdt-bucket1.s3.ap-northeast-2.amazonaws.com/size-lavi-perchik-XYK2oHVKuJA-unsplash.jpg",
+            "curriculum_round_count": 5,
+            "curriculum_difficulty": "Easy"
+        },
+        "download_round_response": [
+            {
+                "order": 1,
+                "time": 300,
+                "explanation": "인물",
+                "is_upload_successful": "Null",
+                "id": 1
+            },
+            {
+                "order": 2,
+                "time": 300,
+                "explanation": "사물",
+                "is_upload_successful": "Null",
+                "id": 2
+            },
+            {
+                "order": 3,
+                "time": 300,
+                "explanation": "동물",
+                "is_upload_successful": "Null",
+                "id": 3
+            },
+            {
+                "order": 4,
+                "time": 300,
+                "explanation": "식물",
+                "is_upload_successful": "Null",
+                "id": 4
+            },
+            {
+                "order": 5,
+                "time": 300,
+                "explanation": "기타",
+                "is_upload_successful": "Null",
+                "id": 5
+            }
+        ]
+    },
+    "timestamp": "2024-06-07T13:33:44.746688"
+}

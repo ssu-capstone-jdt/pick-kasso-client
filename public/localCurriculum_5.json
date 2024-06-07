@@ -1,0 +1,165 @@
+{
+    "success": true,
+    "status": 200,
+    "data": {
+        "curriculum_response": {
+            "curriculum_id": 5,
+            "curriculum_title": "30일동안 크로키",
+            "curriculum_info": "하루 10분 매일 꾸준한 크로키",
+            "curriculum_explanation": "매일 30일동안 하루 10분 크로키를 진행합니다. 선의 정확성과 효율을 향상시키고, 사물을 그리는데 필요한 관찰력을 향상시킵니다. 인체의 구조와 비율에 대한 감각 이 향상됩니다.",
+            "curriculum_painting": "https://jdt-bucket1.s3.ap-northeast-2.amazonaws.com/%E1%84%8F%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8F%E1%85%B5.jpeg",
+            "curriculum_round_count": 21,
+            "curriculum_difficulty": "Easy"
+        },
+        "download_round_response": [
+            {
+                "order": 1,
+                "time": 600,
+                "explanation": "라운드1",
+                "is_upload_successful": "Null",
+                "id": 63
+            },
+            {
+                "order": 2,
+                "time": 600,
+                "explanation": "라운드2",
+                "is_upload_successful": "Null",
+                "id": 64
+            },
+            {
+                "order": 3,
+                "time": 600,
+                "explanation": "라운드3",
+                "is_upload_successful": "Null",
+                "id": 65
+            },
+            {
+                "order": 4,
+                "time": 600,
+                "explanation": "라운드4",
+                "is_upload_successful": "Null",
+                "id": 66
+            },
+            {
+                "order": 5,
+                "time": 600,
+                "explanation": "라운드",
+                "is_upload_successful": "Null",
+                "id": 67
+            },
+            {
+                "order": 6,
+                "time": 600,
+                "explanation": "라운드",
+                "is_upload_successful": "Null",
+                "id": 68
+            },
+            {
+                "order": 7,
+                "time": 600,
+                "explanation": "라운드",
+                "is_upload_successful": "Null",
+                "id": 69
+            },
+            {
+                "order": 8,
+                "time": 600,
+                "explanation": "라운드1",
+                "is_upload_successful": "Null",
+                "id": 70
+            },
+            {
+                "order": 9,
+                "time": 600,
+                "explanation": "라운드2",
+                "is_upload_successful": "Null",
+                "id": 71
+            },
+            {
+                "order": 10,
+                "time": 600,
+                "explanation": "라운드3",
+                "is_upload_successful": "Null",
+                "id": 72
+            },
+            {
+                "order": 11,
+                "time": 600,
+                "explanation": "라운드4",
+                "is_upload_successful": "Null",
+                "id": 73
+            },
+            {
+                "order": 12,
+                "time": 600,
+                "explanation": "라운드",
+                "is_upload_successful": "Null",
+                "id": 74
+            },
+            {
+                "order": 13,
+                "time": 600,
+                "explanation": "라운드",
+                "is_upload_successful": "Null",
+                "id": 75
+            },
+            {
+                "order": 14,
+                "time": 600,
+                "explanation": "라운드",
+                "is_upload_successful": "Null",
+                "id": 76
+            },
+            {
+                "order": 15,
+                "time": 600,
+                "explanation": "라운드1",
+                "is_upload_successful": "Null",
+                "id": 77
+            },
+            {
+                "order": 16,
+                "time": 600,
+                "explanation": "라운드2",
+                "is_upload_successful": "Null",
+                "id": 78
+            },
+            {
+                "order": 17,
+                "time": 600,
+                "explanation": "라운드3",
+                "is_upload_successful": "Null",
+                "id": 79
+            },
+            {
+                "order": 18,
+                "time": 600,
+                "explanation": "라운드4",
+                "is_upload_successful": "Null",
+                "id": 80
+            },
+            {
+                "order": 19,
+                "time": 600,
+                "explanation": "라운드",
+                "is_upload_successful": "Null",
+                "id": 81
+            },
+            {
+                "order": 20,
+                "time": 600,
+                "explanation": "라운드",
+                "is_upload_successful": "Null",
+                "id": 82
+            },
+            {
+                "order": 21,
+                "time": 600,
+                "explanation": "라운드",
+                "is_upload_successful": "Null",
+                "id": 83
+            }
+        ]
+    },
+    "timestamp": "2024-06-07T13:36:01.275665"
+}

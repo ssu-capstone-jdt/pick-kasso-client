@@ -1,0 +1,6 @@
+로컬에서 실행하기
+>>npm start
+
+if sh: react-scripts: command not found
+>>npm update
+>>npm start

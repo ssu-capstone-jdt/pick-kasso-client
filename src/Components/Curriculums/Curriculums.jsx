@@ -20,6 +20,18 @@ const Curriculums = ({ activeButton }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const loadLocalData = async () => {
+      try {
+        const response = await fetch('/localCurriculums.json'); // 로컬 파일 경로 설정
+        const localData = await response.json();
+        const data = localData.data.filter(cur => cur.state === 'Pending');
+        setAllCurriculums(data);
+        filterCurriculums(data, activeButton);
+      } catch (localError) {
+        console.error('Error loading local data:', localError);
+      }
+    };
+
     api.get('/curriculums/all')
       .then(response => {
         const data = response.data.data.filter(cur => cur.state === 'Pending');
@@ -30,8 +42,9 @@ const Curriculums = ({ activeButton }) => {
       .catch(error => {
         console.error('Error fetching curriculum data:', error);
         setError(true);
+        loadLocalData();
       });
-  }, [activeButton]);
+  }, [activeButton, setError]); // setError 추가
 
   useEffect(() => {
     filterCurriculums(allCurriculums, activeButton);
@@ -107,7 +120,7 @@ const Curriculums = ({ activeButton }) => {
 
   return (
     <div className='info-container'>
-      {error && <p>Error loading data!</p>}
+      {error}
       {filteredCurriculums.map((curriculum, index) => (
         <div key={index} className="curriculum-item" onClick={() => handleClick(curriculum.curriculum_response.curriculum_id)}>
           <img

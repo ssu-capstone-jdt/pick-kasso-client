@@ -1,0 +1,55 @@
+{
+    "success": true,
+    "status": 200,
+    "data": [
+        {
+            "curriculum_response": {
+                "curriculum_id": 1,
+                "curriculum_title": "크로키",
+                "curriculum_info": "매일 5분 크로키",
+                "curriculum_explanation": "매일 5분 꾸준히 그림을 그려 다양한 물체의 형태와 선의 흐름을 이해합니다",
+                "curriculum_painting": "https://jdt-bucket1.s3.ap-northeast-2.amazonaws.com/size-lavi-perchik-XYK2oHVKuJA-unsplash.jpg",
+                "curriculum_round_count": 5,
+                "curriculum_difficulty": "Easy"
+            },
+            "state": "Pending"
+        },
+        {
+            "curriculum_response": {
+                "curriculum_id": 2,
+                "curriculum_title": "일러스트",
+                "curriculum_info": "디지털 일러스트 그리기",
+                "curriculum_explanation": "초보자도 쉽게 따라하는 일러스트 그리기",
+                "curriculum_painting": "https://jdt-bucket1.s3.ap-northeast-2.amazonaws.com/syarafina-idris-dCeWUxnIYaM-unsplash.jpg",
+                "curriculum_round_count": 5,
+                "curriculum_difficulty": "Normal"
+            },
+            "state": "Pending"
+        },
+        {
+            "curriculum_response": {
+                "curriculum_id": 3,
+                "curriculum_title": "배경",
+                "curriculum_info": "배경드로잉",
+                "curriculum_explanation": "그려보아요",
+                "curriculum_painting": "https://jdt-bucket1.s3.ap-northeast-2.amazonaws.com/a7a9f991fadfea58164f73d2ab394c63.jpg",
+                "curriculum_round_count": 6,
+                "curriculum_difficulty": "Hard"
+            },
+            "state": "Pending"
+        },
+        {
+            "curriculum_response": {
+                "curriculum_id": 5,
+                "curriculum_title": "30일동안 크로키",
+                "curriculum_info": "하루 10분 매일 꾸준한 크로키",
+                "curriculum_explanation": "매일 30일동안 하루 10분 크로키를 진행합니다. 선의 정확성과 효율을 향상시키고, 사물을 그리는데 필요한 관찰력을 향상시킵니다. 인체의 구조와 비율에 대한 감각 이 향상됩니다.",
+                "curriculum_painting": "https://jdt-bucket1.s3.ap-northeast-2.amazonaws.com/%E1%84%8F%E1%85%B3%E1%84%85%E1%85%A9%E1%84%8F%E1%85%B5.jpeg",
+                "curriculum_round_count": 21,
+                "curriculum_difficulty": "Easy"
+            },
+            "state": "Pending"
+        }
+    ],
+    "timestamp": "2024-06-07T13:06:45.143462"
+}

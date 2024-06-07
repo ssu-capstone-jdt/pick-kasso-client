@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../Components/api';
 import './LocalCurr.css';
@@ -19,18 +19,6 @@ const LocalCurr = () => {
   const [curriculum, setCurriculum] = useState(null);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    api.get(`/curriculums/${id}`)
-      .then(response => {
-        setCurriculum(response.data.data);
-        setError(false);
-      })
-      .catch(error => {
-        console.error('Error fetching curriculum data:', error);
-        setError(true);
-      });
-  }, [id]);
-
   const imageMap = {
     1: curriculums_1,
     2: curriculums_2,
@@ -48,6 +36,33 @@ const LocalCurr = () => {
     return imageMap[id] || curriculums_1;
   };
 
+  const loadLocalData = useCallback(async () => {
+    try {
+      const response = await fetch(`/localCurriculum_${id}.json`);
+      if (!response.ok) {
+        throw new Error(`Network response was not ok, status: ${response.status}`);
+      }
+      const localData = await response.json();
+      console.log('Local data loaded:', localData);
+      setCurriculum(localData.data);
+    } catch (localError) {
+      console.error('Error loading local data:', localError);
+      setError(true);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    api.get(`/curriculums/${id}`)
+      .then(response => {
+        setCurriculum(response.data.data);
+        setError(false);
+      })
+      .catch(error => {
+        console.error('Error fetching curriculum data:', error);
+        loadLocalData();
+      });
+  }, [id, loadLocalData]);
+
   const handleDownload = () => {
     api.post(`/curriculums/${id}`)
       .then(response => {
@@ -56,6 +71,7 @@ const LocalCurr = () => {
       })
       .catch(error => {
         console.error('Error downloading curriculum:', error);
+        alert("로그인 후 이용 가능합니다.")
       });
   };
 
