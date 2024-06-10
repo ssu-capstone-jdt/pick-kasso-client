@@ -28,7 +28,7 @@ const PaintingInfo = () => {
           <p style={{ fontSize: '13px', color: '#8C8C8C' }}>{curriculum_info}</p>
         </div>
         <h2>{painting_title}</h2>
-        <p>유저: {member_nickname}</p>
+        {member_nickname && <p>유저: {member_nickname}</p>}
       </div>
     </div>
   );

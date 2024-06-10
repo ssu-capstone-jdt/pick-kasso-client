@@ -6,6 +6,7 @@ import Item from '../Item_p/Item';
 
 const Posts = () => {
   const [paintings, setPaintings] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,9 +14,11 @@ const Posts = () => {
       .then(response => {
         const sortedPaintings = response.data.data.reverse();
         setPaintings(sortedPaintings);
+        setLoading(false);
       })
       .catch(error => {
         console.error('There was an error fetching the paintings', error);
+        setLoading(false);
       });
   }, []);
 
@@ -34,18 +37,25 @@ const Posts = () => {
 
   return (
     <div className="post-grid">
-      {paintings.map((item, i) => (
-        <Item
-          key={i}
-          id={item.curriculum_id}
-          image={item.painting_link}
-          nickname={item.member_nickname}
-          title={item.painting_title}
-          curriculum_title={item.curriculum_title}
-          curriculum_info={item.curriculum_info}
-          handleClick={() => handleItemClick(item)}
-        />
-      ))}
+      {loading ? (
+        <div className="loading">
+          <div className="spinner"></div>
+          Loading...
+        </div>
+      ) : (
+        paintings.map((item, i) => (
+          <Item
+            key={i}
+            id={item.curriculum_id}
+            image={item.painting_link}
+            nickname={item.member_nickname}
+            title={item.painting_title}
+            curriculum_title={item.curriculum_title}
+            curriculum_info={item.curriculum_info}
+            handleClick={() => handleItemClick(item)}
+          />
+        ))
+      )}
     </div>
   );
 }

@@ -23,8 +23,9 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div id='root'>
       <BrowserRouter>
+      <div className='main-content'>
         <Navbar user={user} setUser={setUser} />
         <Routes>
           <Route path='/home' element={<Home />} />
@@ -37,6 +38,7 @@ function App() {
           <Route path='/curriculuminfo/:id' element={<CurriculumInfo />} />
           <Route path='/paintinginfo' element={<PaintingInfo />} />
         </Routes>
+        </div>
         <Footer />
       </BrowserRouter>
     </div>
