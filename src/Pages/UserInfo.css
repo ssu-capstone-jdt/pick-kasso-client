@@ -1,3 +1,10 @@
+.user-info-body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+}
 .user-info-container {
     display: flex;
     flex-direction: column;
@@ -5,6 +12,8 @@
     margin: 100px 300px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     margin-bottom: 50px;
+    width: 100%;
+    max-width: 1000px;
   }
   @media (max-width: 1000px) {
     .user-info-container {

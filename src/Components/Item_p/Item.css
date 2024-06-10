@@ -1,18 +1,25 @@
 .item-container {
-    position: relative;
-    width: 250px;
-    height: 250px;
-    border-radius: 8px;
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 8px;
+}
+.item-image {
+  display: block;
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 1400px) {
+  .item-container {
+    width: 200px;
+    height: 200px; 
   }
-  
-  .item-image {
-    display: block;
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 8px;
-    cursor: pointer;
-  }
+}
+
   
   .item-overlay {
     position: absolute;

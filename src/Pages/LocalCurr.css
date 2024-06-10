@@ -110,6 +110,18 @@
 .round::after {
   right: -50px;
 }
+
+@media (min-width: 1200px) {
+  .round::before, .round::after  {
+    width: 70px
+  }
+  .round::before {
+    left: -70px;
+  }
+  .round::after {
+    right: -70px;
+  }
+}
 .round:first-child::before {
   display: none;
 }

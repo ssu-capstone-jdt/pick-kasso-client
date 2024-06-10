@@ -11,7 +11,8 @@ const Posts = () => {
   useEffect(() => {
     api.get("/paintings/all")
       .then(response => {
-        setPaintings(response.data.data);
+        const sortedPaintings = response.data.data.reverse();
+        setPaintings(sortedPaintings);
       })
       .catch(error => {
         console.error('There was an error fetching the paintings', error);

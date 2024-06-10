@@ -84,6 +84,7 @@ const UserInfo = () => {
   }
 
   return (
+    <div className="user-info-body">
     <div className="user-info-container">
       {user ? (
         <div className='user-info-area'>
@@ -123,6 +124,7 @@ const UserInfo = () => {
       ) : (
         <p>로그아웃 하는 중...</p>
       )}
+    </div>
     </div>
   );
 };
