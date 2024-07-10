@@ -69,7 +69,7 @@
     padding: 10px 35px;  
     font-size: 18px; 
     font-weight: bold;
-    cursor: pointer;  
+    cursor: pointer; 
 }
 .nav-diff button:hover {
     background-color: #FBCDD4; 

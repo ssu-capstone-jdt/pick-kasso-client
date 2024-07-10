@@ -1,0 +1,62 @@
+.keyword-title {
+    width: 100%;
+    padding-top: 10px;
+    margin: 0;
+}
+
+.keyword-title .keyword {
+    display: inline; 
+}
+
+.keyword-title img {
+    border-radius: 0;
+    width: 12px;
+    height: 12px;
+    display: inline;
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+.used-count {
+    display: inline; 
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 15px;
+    padding-left: 5px;
+}
+
+.keyword-tags {
+    margin-top: 0.5rem;
+}
+
+.tag {
+    background-color: #edecec;
+    color: #666666;
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    display: inline-block;
+    font-weight: 700;
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container img {
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    top: 7px; 
+    left: 7px; 
+    background-color: #f44336; 
+    color: white;
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 3px;
+    font-size: 0.875rem;
+    font-weight: 700;
+}

@@ -55,6 +55,7 @@ const Navbar = ({ user, setUser }) => {
                 <li onClick={() => { setMenu("home") }} style={{ whiteSpace: 'nowrap' }}><Link to='/home'>홈</Link>{menu === "home" ? <hr /> : <></>}</li>
                 <li onClick={() => { setMenu("post") }} style={{ whiteSpace: 'nowrap' }}><Link to='/post'>포스트</Link>{menu === "post" ? <hr /> : <></>}</li>
                 <li onClick={() => { setMenu("curriculum") }} style={{ whiteSpace: 'nowrap' }}><Link to='/curriculum'>커리큘럼</Link>{menu === "curriculum" ? <hr /> : <></>}</li>
+                <li onClick={() => { setMenu("keyword") }} style={{ whiteSpace: 'nowrap' }}><Link to='/keyword'>키워드</Link>{menu === "keyword" ? <hr /> : <></>}</li>
                 <li onClick={() => { setMenu("mypage") }} style={{ whiteSpace: 'nowrap' }}><Link to='/mypage'>마이페이지</Link>{menu === "mypage" ? <hr /> : <></>}</li>
                 </div>
                 <div className="nav-login">
