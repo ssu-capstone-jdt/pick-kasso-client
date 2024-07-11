@@ -49,6 +49,7 @@ const Keywords = ({ activeButton }) => {
 
     const handleItemClick = (id) => {
         navigate(`/keyword/${id}`);
+        api.post(`/keyword/${id}`);
     };
 
     return (

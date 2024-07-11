@@ -12,6 +12,7 @@ import CurriculumInfo from './Pages/CurriculumInfo';
 import LocalCurr from './Pages/LocalCurr';
 import PaintingInfo from './Pages/PaintingInfo';
 import Keyword from './Pages/Keyword';
+import RouteKeywordPage from './Components/RouteKeywordPage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -34,6 +35,7 @@ function App() {
           <Route path='/curriculum' element={<Curriculum />} />
           <Route path='/curriculum/:id' element={<LocalCurr />} />
           <Route path='/keyword' element={<Keyword />} />
+          <Route path='/keyword/:id' element={<RouteKeywordPage />} />
           <Route path='/mypage' element={<MyPage />} />
           <Route path="/auth" element={<OAuthCallback setUser={setUser} />} />
           <Route path='/user' element={<UserInfo />}/>
